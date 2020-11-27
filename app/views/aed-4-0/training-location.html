@@ -1,0 +1,144 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+	tag: {
+	text: "experimental"
+},
+html: 'This service is being used for research only.'
+}) }}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% set _citiesAutocompleteList = data['citiesAutocompleteList'] %}
+{% set _defaultLocationSearchvalue = "" %}
+
+{% block content %}
+<!-- {{data['citiesAutocompleteList']}} -->
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			{% set postcodeHtml %}
+			<div class="govuk-form-group" >
+				<label for="search-location" class="govuk-label" >
+					Enter a town, city or postcode
+				</label>
+				<input type="search" value="" id="search-location" name="request[location]" title="Search" class="govuk-input govuk-input-background">
+			</div>
+
+			<input type="hidden" value="{{data['request']['standard']['name']}}" name="standard">
+			{% endset %}
+
+			{{ govukRadios({
+				idPrefix: "location",
+				name: "request[location-preference]",
+				fieldset: 
+				{
+					legend: 
+					{
+						text: "Where does the training need to be delivered?",
+						isPageHeading: true,
+						classes: "govuk-fieldset__legend--xl"
+					}
+				},
+				hint: 
+				{
+					text: ""
+				},
+				items: [
+				{
+					value: "yes",
+					text: "At a specific location",
+					conditional:
+					{
+						html: postcodeHtml
+					}
+				},
+				{
+					value: "no",
+					text: "I have no preference"
+				}
+				]
+			}) }}
+
+			<p>
+				{{govukButton({
+					text: "Save and continue"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}
+
+{% block pageScripts %}
+<script type="text/javascript" src="/public/javascripts/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="/public/javascripts/accessible-autocomplete.min.js"></script>
+<script>
+	// Taken from DAS FAT Prototype
+	// https://github.com/SkillsFundingAgency/das-fat-prototype/
+
+    // Locations 
+    function suggestLocations(query, populateResults) {
+    	var _allSuggestions = []
+
+        // Cities
+        var _citiesResults = {{_citiesAutocompleteList | dump | safe }},
+        _filteredCitiesResults = _citiesResults.filter(
+        	result => result.toUpperCase().startsWith(query.trim().toUpperCase())
+        	)
+        _filteredCitiesResults.sort(function(a,b){
+        	var returnValue = 0;
+        	if (a.toUpperCase() < b.toUpperCase()){
+        		returnValue = -1
+        	} else if(a.toUpperCase() > b.toUpperCase()){
+        		returnValue = 1
+        	}
+        	return returnValue
+        });
+
+        // Postcodes
+        $.getJSON('https://api.postcodes.io/postcodes/' + query + '/autocomplete', function(body){
+        	var _postcodes = body.result || []
+        	_allSuggestions = _allSuggestions.concat(_filteredCitiesResults,_postcodes)
+        	populateResults(_allSuggestions)
+        })
+    }
+    // function fireLocationSearch(){setTimeout(function(){ $("#search-location-submit").trigger("click") },200);}
+    function fireLocationSearch(){setTimeout(function(){ $(".location-submit").trigger("click") },200);}
+    var locationInput = document.querySelector('#search-location')
+    if (locationInput) {
+    	var locationInputID = locationInput.id,
+    	locationElement = document.createElement('div'),
+    	defaultLocationSearchvalue = {{_defaultLocationSearchvalue | dump | safe }}
+    	locationElement.className = "autocomplete__parent_wrapper";
+    	locationInput.parentNode.insertBefore(locationElement, locationInput)
+    	accessibleAutocomplete({
+            // other options
+            element: locationElement,
+            id: locationInputID,
+            name: locationInput.name,
+            source: suggestLocations,
+            defaultValue: defaultLocationSearchvalue,
+            minLength: 1,
+            confirmOnBlur: false,
+            autoselect: true,
+            onConfirm: fireLocationSearch,
+            displayMenu: 'overlay'
+        })
+    	locationInput.style.display = 'none'
+    	locationInput.id = locationInputID + '-old'
+    	locationInput.name = ''
+    }
+</script>
+{% endblock %}

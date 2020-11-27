@@ -1,0 +1,69 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+	tag: {
+	text: "experimental"
+},
+html: 'This service is being used for research only.'
+}) }}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			<div class="govuk-form-group">
+				<h1 class="govuk-label-wrapper">
+					<label class="govuk-label govuk-label--xl" for="standard-picker">
+						Which apprenticeship training course are you interested in?
+					</label>
+				</h1>
+
+				<!-- <div class="govuk-inset-text">
+					If you need to register interest for more than one apprenticeship training course, you should do this separately for each course.
+				</div> -->
+
+				<label class="govuk-label" for="sort">
+					Start typing the name of a course
+				</label>
+				<select class="govuk-select" id="standard-picker" name="request[standard][name]">
+					<option></option>
+					{% for standard in data['standards']['list'] %}
+					<option value="{{standard.title}}, Level: {{standard.level}}">{{standard.title}}, Level: {{standard.level}}</option>
+					{% endfor %}
+				</select>
+			</div>
+
+			<p>
+				{{govukButton({
+					text: "Save and continue"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}
+
+{% block pageScripts %}
+<script type="text/javascript" src="/public/javascripts/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="/public/javascripts/accessible-autocomplete.min.js"></script>
+<script>
+	accessibleAutocomplete.enhanceSelectElement({
+		selectElement: document.querySelector('#standard-picker'),
+		defaultValue: ''
+	})
+</script>
+{% endblock %}

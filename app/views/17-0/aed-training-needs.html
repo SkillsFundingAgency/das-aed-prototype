@@ -1,0 +1,258 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+	tag: {
+	text: "experimental"
+},
+html: 'This service is being used for research only.'
+}) }}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% set _citiesAutocompleteList = data['citiesAutocompleteList'] %}
+{% set _defaultLocationSearchvalue = "" %}
+
+{% block content %}
+<!-- {{data['citiesAutocompleteList']}} -->
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl">
+			Tell us about your training needs
+		</h1>
+
+		<p class="govuk-body-l">
+			If you're having difficulty finding suitable apprenticeship training provision, you can tell us about your training needs.
+		</p>
+		<p class="govuk-body-l">
+			We'll share your requirements with training providers who may be able to provide the training.
+		</p>
+
+		<h2 class="govuk-heading-l">
+				Training
+			</h2>
+
+		<form action="aed-confirmation">
+			<h3 class="govuk-heading-m">
+				Apprenticeship training course
+			</h3>
+			<p class="govuk-!-margin-bottom-2">
+				Able seafarer (deck) (level 2)
+			</p>
+			<p class="govuk-!-margin-bottom-6">
+				<a href="#">Change</a>
+			</p>
+
+			<h3 class="govuk-heading-m">
+				Training location
+			</h3>
+			<p class="govuk-!-margin-bottom-2">
+				Coventry, West Midlands
+			</p>
+			<p class="govuk-!-margin-bottom-6">
+				<a href="#">Change</a>
+			</p>
+
+			<hr class="govuk-section-break--visible govuk-section-break--xl govuk-section-break">
+
+			<h2 class="govuk-heading-l">
+				Apprentices
+			</h2>
+
+			{{ govukInput({
+				label:
+				{
+					text: "How many apprentices will be doing this training?",
+					classes: "govuk-label--m",
+					isPageHeading: false
+				},
+				classes: "govuk-input--width-4",
+				hint:
+				{
+					text: "Enter the number of apprentices"
+				},
+				id: "apprentices",
+				name: "request[apprentices]",
+				inputmode: "numeric",
+				pattern: "[0-9]*",
+				spellcheck: false
+			}) }}
+
+			{% set dateHtml %}
+			<div id="start-date-hint" class="govuk-hint">
+				For example, 03 2021
+			</div>
+			<div class="govuk-date-input" id="start-date">
+				<div class="govuk-date-input__item">
+					<div class="govuk-form-group">
+						<label class="govuk-label govuk-date-input__label" for="start-date-month">
+							Month
+						</label>
+						<input class="govuk-input govuk-date-input__input govuk-input--width-2" id="start-date-month" name="request[start-date-month]" type="text" pattern="[0-9]*" inputmode="numeric">
+					</div>
+				</div>
+				<div class="govuk-date-input__item">
+					<div class="govuk-form-group">
+						<label class="govuk-label govuk-date-input__label" for="start-date-year">
+							Year
+						</label>
+						<input class="govuk-input govuk-date-input__input govuk-input--width-4" id="start-date-year" name="request[start-date-year]" type="text" pattern="[0-9]*" inputmode="numeric">
+					</div>
+				</div>
+			</div>
+			{% endset %}
+
+			{{ govukRadios({
+				idPrefix: "start-date",
+				name: "request[start-date-preference]",
+				fieldset: 
+				{
+					legend: 
+					{
+						text: "When do you want the apprentices to start their training?",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend--m"
+					}
+				},
+				hint: 
+				{
+					text: ""
+				},
+				items: [
+				{
+					value: "month",
+					text: "In a specific month",
+					conditional:
+					{
+						html: dateHtml
+					}
+				},
+				{
+					value: "asap",
+					text: "As soon as possible"
+				},
+				{
+					value: "dont-know",
+					text: "I'm not sure"
+				}
+				]
+			}) }}
+
+			{{ govukRadios({
+				idPrefix: "recruitment-required",
+				name: "request[recruitment-required]",
+				fieldset: 
+				{
+					legend: 
+					{
+						text: "Do you need to recruit for this apprenticeship?",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend--m"
+					}
+				},
+				hint: 
+				{
+					text: ""
+				},
+				items: [
+				{
+					value: "yes",
+					text: "Yes"
+				},
+				{
+					value: "no",
+					text: "No – this training is for existing employees"
+				}
+				]
+			}) }}
+
+			<hr class="govuk-section-break--visible govuk-section-break--xl govuk-section-break">
+
+			<h2 class="govuk-heading-l">
+				About you
+			</h2>
+
+			{{ govukInput({
+				label:
+				{
+					text: "What's the name of your organisation?",
+					classes: "govuk-label--m",
+					isPageHeading: false
+				},
+				id: "organisation-name",
+				name: "request[organisation-name]"
+			}) }}
+
+			{% call govukFieldset({
+				legend:
+				{
+					text: "Who can we contact about this?",
+					classes: "govuk-fieldset__legend--m",
+					isPageHeading: false
+				}
+			}) %}
+
+			<p class="govuk-!-margin-bottom-6">
+				We'll share these details with training providers who are interested in delivering this apprenticeship. 
+			</p>
+
+			{{ govukInput({
+				label:
+				{
+					text: "Full name"
+				},
+				hint:
+				{
+					text: ""
+				},
+				id: "contact-full-name",
+				name: "request[contact-full-name]",
+				autocomplete: "name",
+				spellcheck: false
+			}) }}
+
+			{{ govukInput({
+				label:
+				{
+					text: "Email address"
+				},
+				hint:
+				{
+					text: ""
+				},
+				id: "email",
+				name: "request[email]"
+			}) }}
+
+			{% endcall %}
+
+			<h2 class="govuk-heading-l govuk-!-margin-top-8">
+				Before you submit your information
+			</h2>
+			<p>
+				We'll share your information with registered apprenticeship training providers who may contact you to discuss your training requirements.
+			</p>
+			<p>
+				Your information will also be used by the Education and Skills Funding Agency to improve apprenticeship training opportunities in England.
+			</p>
+
+			<p>
+				{{govukButton({
+					text: "Submit"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}
+

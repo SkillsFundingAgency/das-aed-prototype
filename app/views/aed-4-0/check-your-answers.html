@@ -1,0 +1,211 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+	tag: {
+	text: "experimental"
+},
+html: 'This service is being used for research only.'
+}) }}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+			Check your answers
+		</h1>
+
+		{% set trainingLocation %}
+		{% if data['request']['location-preference'] == 'no' %}
+		No preference
+		{% else %}
+		{{data['request']['location']}}
+		{% endif %}
+		{% endset %}
+
+		{% set startDate %}
+		{% if data['request']['start-date-preference'] == 'asap' %}
+		As soon as possible
+		{% elif data['request']['start-date-preference'] == 'dont-know' %}
+		Not sure
+		{% else %}
+		{{ [data['request']['start-date-year'], data['request']['start-date-month'], '01'] | join("-") | formatDate('MMMM YYYY') }}
+		{% endif %}
+		{% endset %}
+
+		{{ govukSummaryList({
+			classes: 'govuk-!-margin-bottom-6',
+			rows: [
+			{
+				key:
+				{
+					text: "Apprenticeship training course"
+				},
+				value:
+				{
+					text: data['request']['standard']['name']
+				},
+				actions:
+				{
+					items: [
+					{
+						href: "standard-details?cya=true",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			},
+			{
+				key:
+				{
+					text: "Training location"
+				},
+				value:
+				{
+					text: trainingLocation
+				},
+				actions:
+				{
+					items: [
+					{
+						href: "training-location?cya=true",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			},
+			{
+				key:
+				{
+					text: "Number of apprentices"
+				},
+				value:
+				{
+					text: data['request']['apprentices']
+				},
+				actions:
+				{
+					items: [
+					{
+						href: "how-many-apprentices?cya=true",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			},
+			{
+				key:
+				{
+					text: "Start date"
+				},
+				value:
+				{
+					text: startDate
+				},
+				actions:
+				{
+					items: [
+					{
+						href: "start-date?cya=true",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			},
+			{
+				key:
+				{
+					text: "Recruitment"
+				},
+				value:
+				{
+					text: "Required" if data['request']['recruitment-required'] == 'yes' else 'Not required'
+				},
+				actions:
+				{
+					items: [
+					{
+						href: "recruitment-required?cya=true",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			},
+			{
+				key:
+				{
+					text: "Organisation name"
+				},
+				value:
+				{
+					text: data['request']['organisation-name']
+				},
+				actions:
+				{
+					items: [
+					{
+						href: "organisation-name?cya=true",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			},
+			{
+				key:
+				{
+					text: "Contact details"
+				},
+				value:
+				{
+					html: "<p>" + data['request']['contact-full-name'] + "<br>" + data['request']['email'] + "</p>"
+				},
+				actions:
+				{
+					items: [
+					{
+						href: "contact-details?cya=true",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			}
+			]
+		}) }}
+
+		<p>
+			We'll share your interest in this apprenticeship with training providers.
+		</p>
+		<p>
+			Training providers may contact you if they're interested in delivering your apprenticeship training.
+		</p>
+
+		<form method="post">
+			<p>
+				{{govukButton({
+					text: "Submit"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

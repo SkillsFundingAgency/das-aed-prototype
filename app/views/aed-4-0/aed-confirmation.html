@@ -1,0 +1,50 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+	tag: {
+	text: "experimental"
+},
+html: 'This service is being used for research only.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		{{ govukPanel({
+			titleText: "We've registered your interest",
+			html: data['request']['standard']['name']
+		}) }}
+
+		<p class="govuk-body">We have sent you a confirmation email.</p>
+
+		<h2 class="govuk-heading-m">What happens next</h2>
+
+		<p class="govuk-body">
+			Training providers can view your anonymised request, along with those from other employers.
+		</p>
+		<p class="govuk-body">
+			You'll receive a notification email if a training provider tells us that they can deliver your training.
+		</p>
+
+		<p class="govuk-body">
+			<a href="#" class="govuk-link">What did you think of this service?</a> (takes 30 seconds)
+		</p>
+	</div>
+</div>
+
+{% endblock %}
+
+{% set footerLinks %}
+<ul class="govuk-list govuk-!-font-size-16">
+	<li><a href="../provider-2-0/?employer-version={{data['prototypeVersion']}}">Continue to Provider journey</a></li>
+	<li><a href="../aed-3-0/email-provider-interest?employer-version={{data['prototypeVersion']}}">Continue to Employer email</a></li>
+</ul>
+{% endset %}

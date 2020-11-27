@@ -1,0 +1,96 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+	tag: {
+	text: "experimental"
+},
+html: 'This service is being used for research only.'
+}) }}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			{% set date %}
+			<div id="start-date-hint" class="govuk-hint">
+				For example, 03 2021
+			</div>
+			<div class="govuk-date-input" id="start-date">
+				<div class="govuk-date-input__item">
+					<div class="govuk-form-group">
+						<label class="govuk-label govuk-date-input__label" for="start-date-month">
+							Month
+						</label>
+						<input class="govuk-input govuk-date-input__input govuk-input--width-2" id="start-date-month" name="request[start-date-month]" type="text" pattern="[0-9]*" inputmode="numeric">
+					</div>
+				</div>
+				<div class="govuk-date-input__item">
+					<div class="govuk-form-group">
+						<label class="govuk-label govuk-date-input__label" for="start-date-year">
+							Year
+						</label>
+						<input class="govuk-input govuk-date-input__input govuk-input--width-4" id="start-date-year" name="request[start-date-year]" type="text" pattern="[0-9]*" inputmode="numeric">
+					</div>
+				</div>
+			</div>
+			{% endset %}
+
+			{{ govukRadios({
+				idPrefix: "start-date",
+				name: "request[start-date-preference]",
+				fieldset: 
+				{
+					legend: 
+					{
+						text: "When do you want the apprentices to start their training?",
+						isPageHeading: true,
+						classes: "govuk-fieldset__legend--xl"
+					}
+				},
+				hint: 
+				{
+					text: ""
+				},
+				items: [
+				{
+					value: "month",
+					text: "In a specific month",
+					conditional:
+					{
+						html: date
+					}
+				},
+				{
+					value: "asap",
+					text: "As soon as possible"
+				},
+				{
+					value: "dont-know",
+					text: "I'm not sure"
+				}
+				]
+			}) }}
+
+			<p>
+				{{govukButton({
+					text: "Save and continue"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

@@ -268,11 +268,17 @@
                 <h2 class="govuk-heading-l" >Find training providers for this course</h2>
                 
                 <p class="govuk-body">There are no training providers available for this course.</p>
-                <p class="govuk-body">You can either:</p>
-                <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
-                    <li><a href="training" class="govuk-link govuk-link--no-visited-state">search for another course</a></li>
-                    <li><a href="https://help.apprenticeships.education.gov.uk/hc/en-gb#contact-us" class="govuk-link govuk-link--no-visited-state">get help with finding a training provider</a></li>
-                </ul>
+                
+                <h3 class="govuk-heading-m govuk-!-margin-bottom-2">
+                    Having trouble finding a training provider?
+                </h3>
+                <p>
+                    You can <a href="#">tell us about your training needs</a> and we'll share your interest with training providers.
+                </p>
+
+                <p class="govuk-body govuk-!-margin-top-6">
+                    You can also <a href="training" class="govuk-link govuk-link--no-visited-state">search for another course</a>.
+                </p>
             </div>
 
         {% else %}
@@ -329,16 +335,28 @@
 
                 {% if myData.locationapplied and _displaycountproviders == 0 %}
                     <!-- <p class="govuk-body">The Education and Skills Funding Agency (ESFA) can advise you what to do next.</p> -->
-                    <p class="govuk-body">You can either:</p>
-                    <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
+                    <!-- <p class="govuk-body">You can either:</p> -->
+                    <!-- <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6"> -->
                         <!-- <li><a href="https://help.apprenticeships.education.gov.uk/hc/en-gb#contact-us" class="govuk-link govuk-link--no-visited-state">contact ESFA</a></li> -->
-                        <li><a href="training" class="govuk-link govuk-link--no-visited-state">search for another course</a></li>
-                        <li><a href="https://help.apprenticeships.education.gov.uk/hc/en-gb#contact-us" class="govuk-link govuk-link--no-visited-state">get help with finding a training provider</a></li>
-                    </ul>
+                        <!-- <li><a href="training" class="govuk-link govuk-link--no-visited-state">search for another course</a></li> -->
+                        <!-- <li><a href="https://help.apprenticeships.education.gov.uk/hc/en-gb#contact-us" class="govuk-link govuk-link--no-visited-state">get help with finding a training provider</a></li> -->
+                    <!-- </ul> -->
+                    <p class="govuk-body govuk-!-margin-bottom-5">
+                    You can <a href="training" class="govuk-link govuk-link--no-visited-state">search for another course</a>.
+                </p>
+
                     <p class="govuk-body">{{myData.countproviders}} providers available at other locations.</p>
                     <p class="govuk-body govuk-!-margin-bottom-6"><a href="providers?standard={{myData.standard}}&location" class="govuk-button govuk-link--no-visited-state govuk-!-margin-bottom-0">View all providers for this course</a></p>
                 {% endif %}
 
+                {% if _displaycountproviders == 0 %}
+                <h3 class="govuk-heading-m govuk-!-margin-bottom-2">
+                    Having trouble finding a training provider?
+                </h3>
+                <p>
+                    You can <a href="#">tell us about your training needs</a> and we'll share your interest with training providers.
+                </p>
+                {% endif %}
             </div>
 
         {% endif %}

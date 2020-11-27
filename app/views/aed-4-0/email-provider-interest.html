@@ -1,0 +1,89 @@
+{% extends "./layout_email.html" %}
+
+{% set serviceName = 'EMAIL' %}
+
+{% block page_title %}
+{{serviceName}}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <a href="https://www.gov.uk/government/organisations/education-and-skills-funding-agency" target="_blank">
+    <img src="/public/images/esfa-logo.png" width="180px" id="logo">
+  </a>
+
+  <h1 class="heading-large">
+    A training provider has responded to your training request
+  </h1>
+
+  <div class="govuk-inset-text">
+    {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+    {{ govukSummaryList({
+      classes: 'govuk-!-margin-bottom-2',
+      rows: [
+      {
+        key:
+        {
+          text: "Training provider"
+        },
+        value:
+        {
+          html: "<p>ABC Training<br>
+            01234 567 890<br>
+          info@abc-training.edu.uk</p>"
+        }
+      },
+      {
+        key:
+        {
+          text: "Apprenticeship training course"
+        },
+        value:
+        {
+          text: data['request']['standard']['name']
+        }
+      },
+      {
+        key:
+        {
+          text: "Start date"
+        },
+        value:
+        {
+          text: "January 2021"
+        }
+      },
+      {
+        key:
+        {
+          text: "Training cost"
+        },
+        value:
+        {
+          html: "<p>£4,500<br>
+             <small style='color: #777'>£225 for employers who do not pay the apprenticeship levy</small></p>"
+        }
+      }
+      ]
+    }) }}
+  </div>
+
+  <p>
+    You can view more information at <a href="training-proposal">https://manage-apprenticeships.service.gov.uk/training-request?id=732137abe238213f12-eaf1d1271912</a>
+  </p>
+
+  <p>
+    This is an automated message. Please don't reply to this email.
+  </p>
+
+  <p>
+    Kind regards,
+  </p>
+
+  <p>
+    Apprenticeship service team,<br>
+    Education and Skills Funding Agency
+  </p>
+</main>
+{% endblock %}

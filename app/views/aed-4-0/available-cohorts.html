@@ -1,0 +1,103 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+	tag: {
+	text: "experimental"
+},
+html: 'This service is being used for research only.'
+}) }}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		{% set pageTitle %}
+		{% if data['request']['location-preference'] == 'yes' %}
+		There are 4 cohorts available to join near {{data['request']['postcode']|upper}}:
+		{% else %}
+		There are 4 cohorts available to join:
+		{% endif %}
+		{% endset %}
+
+		{{ govukCheckboxes({
+			idPrefix: "chosen-cohort",
+			name: "chosen-cohort",
+			hint:
+			{
+				html: 'Choose from these cohorts, or <a href="organisation-name?chosen-cohort=new">start a new cohort</a> if none are suitable.'
+			},
+			fieldset:
+			{
+				legend:
+				{
+					text: pageTitle,
+					isPageHeading: true,
+					classes: "govuk-fieldset__legend--l"
+				}
+			},
+			items: [
+			{
+				value: "cohort-2",
+				text: "Starting December 2020",
+				conditional:
+				{
+					html: "<p>7 employers<br>
+					13 apprentices</p>"
+				}
+			},
+			{
+				value: "cohort-3",
+				text: "Starting February 2021",
+				conditional:
+				{
+					html: "<p>4 employers<br>
+					5 apprentices</p>"
+				}
+			},
+			{
+				value: "cohort-4",
+				text: "Starting April 2021",
+				conditional:
+				{
+					html: "<p>2 employers<br>
+					2 apprentices</p>"
+				}
+			},
+			{
+				value: "cohort-1",
+				text: "Starting as soon as provision becomes available",
+				conditional:
+				{
+					html: "<p>6 employers<br>
+					12 apprentices</p>"
+				}
+			}
+			]
+		}) }}
+
+		<form method="post">
+			<p>
+				{{govukButton({
+					text: "Save and continue"
+				})}}
+			</p>
+		</form>
+
+		<!-- <p>
+			You can <a href="organisation-name">start a new cohort</a> if none of these are suitable.
+		</p> -->
+	</div>
+</div>
+{% endblock %}

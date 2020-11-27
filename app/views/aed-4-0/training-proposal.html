@@ -1,0 +1,91 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+	tag: {
+	text: "experimental"
+},
+html: 'This service is being used for research only.'
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+			Apprenticeship training proposal
+		</h1>
+
+		{{ govukSummaryList({
+			classes: 'govuk-!-margin-bottom-6',
+			rows: [
+			{
+				key:
+				{
+					text: "Training provider"
+				},
+				value:
+				{
+					html: "<p>ABC Training<br>01234 567 890<br>info@abc-training.edu.uk</p>"
+				}
+			},
+			{
+				key:
+				{
+					text: "Apprenticeship training course"
+				},
+				value:
+				{
+					text: "Business admin, Level: 2"
+				}
+			},
+			{
+				key:
+				{
+					text: "Training delivery"
+				},
+				value:
+				{
+					html: "<p>Day release<br>Block release</p>"
+				}
+			},
+			{
+				key:
+				{
+					text: "Start date"
+				},
+				value:
+				{
+					text: "January 2021"
+				}
+			},
+			{
+				key:
+				{
+					text: "Training cost"
+				},
+				value:
+				{
+					text: "£4,500"
+				}
+			}
+			]
+		}) }}
+
+		<p>
+			You should contact ABC Training to discuss your requirements if you're interested in their training proposal.
+		</p>
+
+		<p>
+			If you do not want to receive any more training proposals relating to your request, you can <a href="#">unsubscribe from notifications</a>.
+		</p>
+	</div>
+</div>
+{% endblock %}

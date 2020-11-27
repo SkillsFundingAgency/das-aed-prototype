@@ -1,0 +1,59 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{% include './includes/_banner--experimental.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+			Find a training provider to deliver your apprenticeship
+		</h1>
+
+		<p class="govuk-body-l">
+			This service is for employers who are looking to find apprenticeship training provision for a chosen training course.
+		</p>
+
+		<p>
+			You can register your interest in apprenticeship training so providers can arrange training with you.
+		</p>
+
+		<h2 class="govuk-heading-m">
+			Before you start
+		</h2>
+
+		<p>
+			You should know which apprenticeship training course you want your apprentice to do.
+		</p>
+		<p>
+			If you have not chosen the aprenticeship training course yet, you should <a href="https://findapprenticeshiptraining.apprenticeships.education.gov.uk/">Find apprenticeship training for your apprentice</a> before continuing.
+		</p>
+		<!-- <ul class="govuk-list govuk-list--bullet">
+			<li>Thing 1</li>
+			<li>Thing 2</li>
+		</ul> -->
+
+		<p>
+			{{govukButton({
+				text: "Start now",
+				href: "standard-details",
+				isStartButton: true,
+				classes: "govuk-!-margin-top-5"
+			})}}
+		</p>
+	</div>
+</div>
+{% endblock %}

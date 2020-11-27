@@ -1,0 +1,97 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+	tag: {
+	text: "experimental"
+},
+html: 'This service is being used for research only.'
+}) }}
+
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) 
+  }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			{% set phoneHtml %}
+			{{ govukInput({
+				label:
+				{
+					text: "Enter phone number",
+					classes: "govuk-label--s",
+					isPageHeading: false
+				},
+				id: "event-name",
+				name: "event-name"
+			}) }}
+			{% endset %}
+
+			{% set emailHtml %}
+			{{ govukInput({
+				label:
+				{
+					text: "Enter email",
+					classes: "govuk-label--s",
+					isPageHeading: false
+				},
+				id: "event-name",
+				name: "event-name"
+			}) }}
+			{% endset %}
+			{{ govukCheckboxes({
+				idPrefix: "changed-name",
+				name: "changed-name",
+				fieldset: 
+				{
+					legend: 
+					{
+						text: "How should providers contact you?",
+						isPageHeading: true,
+						classes: "govuk-fieldset__legend--xl"
+					}
+				},
+				hint: 
+				{
+					text: ""
+				},
+				items: [
+				{
+					value: "yes",
+					text: "Phone",
+					conditional:
+					{
+						html: phoneHtml
+					}
+				},
+				{
+					value: "no",
+					text: "Email",
+					conditional:
+					{
+						html: emailHtml
+					}
+				}
+				]
+			}) }}
+
+			<p>
+				{{govukButton({
+					text: "Save and continue"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}
