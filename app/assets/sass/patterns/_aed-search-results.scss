@@ -1,0 +1,46 @@
+.aed-search-results {
+
+}
+
+.aed-search-results__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.aed-search-results__list--border {
+  border-top: 1px solid $govuk-border-colour;
+  border-bottom: 1px solid $govuk-border-colour;
+}
+
+.aed-search-results__list-item {
+  border-bottom: 1px solid $govuk-border-colour;
+  padding: 15px 0;
+}
+
+.aed-search-results__list-item:last-child {
+  border-bottom: none;
+}
+
+.aed-search-results__heading {
+  @include govuk-responsive-margin(2, "bottom")
+}
+
+.aed-search-results__body {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.aed-search-results__link {
+  @include govuk-link-common;
+  @include govuk-link-style-no-visited-state;
+}
+
+.aed-search-results__meta {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.aed-search-results__meta > dd {
+  margin-bottom: 5px;
+}

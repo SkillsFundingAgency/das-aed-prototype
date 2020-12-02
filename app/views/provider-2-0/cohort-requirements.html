@@ -1,0 +1,153 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+	tag: {
+	text: "experimental"
+},
+html: 'This service is being used for research only.'
+}) }}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl">
+			Let employers know the requirements for this cohort
+		</h1>
+		
+		{% include './includes/_cohort-details.html' %}
+
+		{{ govukCheckboxes({
+			idPrefix: "waste",
+			name: "waste",
+			fieldset:
+			{
+				legend:
+				{
+					text: "Training location",
+					isPageHeading: true,
+					classes: "govuk-fieldset__legend--m"
+				}
+			},
+			hint:
+			{
+				text: "Select all that apply."
+			},
+			items: [
+			{
+				value: "workplace",
+				text: "At employer’s workplace"
+			},
+			{
+				value: "day-release",
+				text: "Day release"
+			},
+			{
+				value: "block-release",
+				text: "Block release"
+			}
+			]
+		}) }}
+
+		<div class="govuk-form-group">
+			<fieldset class="govuk-fieldset" role="group">
+				<legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+					<h1 class="govuk-fieldset__heading">
+						Start date
+					</h1>
+				</legend>
+
+				<div class="govuk-date-input" id="event-name">
+					<div id="start-date-hint" class="govuk-hint">
+						For example, 03 2021
+					</div>
+					<div class="govuk-date-input__item">
+						<div class="govuk-form-group">
+							<label class="govuk-label govuk-date-input__label" for="event-name-month">
+								Month
+							</label>
+
+							<input class="govuk-input govuk-date-input__input govuk-input--width-2" id="event-name-month" name="month" type="text" pattern="[0-9]*" inputmode="numeric">
+						</div>
+					</div>
+
+					<div class="govuk-date-input__item">
+						<div class="govuk-form-group">
+							<label class="govuk-label govuk-date-input__label" for="event-name-year">
+								Year
+							</label>
+
+							<input class="govuk-input govuk-date-input__input govuk-input--width-4" id="event-name-year" name="year" type="text" pattern="[0-9]*" inputmode="numeric">
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+
+		{{ govukInput({
+			label:
+			{
+				text: "Cost",
+				classes: "govuk-label--m",
+				isPageHeading: true
+			},
+			id: "event-name",
+			name: "event-name",
+			prefix:
+			{
+				text: "£"
+			},
+			hint:
+			{
+				text: "The total cost of the apprenticeship training course. Employers who do not pay the apprenticeship levy will pay 5% of this amount."
+			},
+			classes: "govuk-input--width-10",
+			spellcheck: false
+		}) }}
+
+		{{ govukInput({
+			label:
+			{
+				text: "Total apprentices required",
+				classes: "govuk-label--m",
+				isPageHeading: true
+			},
+			hint:
+			{
+				text: "The minimum number of apprentices required in this cohort, from all employers, for the training to go ahead."
+			},
+			id: "event-name",
+			name: "event-name",
+			inputmode: "numeric",
+			pattern: "[0-9]*",
+			spellcheck: false,
+			classes: "govuk-input--width-10"
+		}) }}
+
+		<form method="post">
+			<p>
+				{{govukButton({
+					text: "Save and continue"
+				})}}
+			</p>
+		</form>
+
+		<!-- <p>
+			You can <a href="organisation-name">start a new cohort</a> if none of these are suitable.
+		</p> -->
+	</div>
+</div>
+{% endblock %}

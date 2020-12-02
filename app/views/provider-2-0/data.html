@@ -1,0 +1,94 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+GOV.UK Prototype Kit
+{% endblock %}
+
+{% set serviceName = 'Employer request' %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+	tag:
+	{
+		text: "experimental"
+	},
+	html: 'This service is being used for research only.'
+}) }}
+
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) 
+  }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+			Employer apprenticeship requirements
+		</h1>
+
+		<p>
+			You've received a request from an employer with the following details:
+		</p>
+
+		{{ govukSummaryList({
+			rows: [
+			{
+				key:
+				{
+					text: "Employer name"
+				},
+				value:
+				{
+					text: data['employer']['name']
+				}
+			},
+			{
+				key:
+				{
+					text: "Location"
+				},
+				value:
+				{
+					text: 'Leamington Spa'
+				}
+			},
+			{
+				key:
+				{
+					text: "Apprenticeship standard"
+				},
+				value:
+				{
+					text: data['request']['standard']['name']
+				}
+			},
+			{
+				key:
+				{
+					text: "Number of apprentices"
+				},
+				value:
+				{
+					html: "2"
+				}
+			},
+			{
+				key:
+				{
+					text: "Start date"
+				},
+				value:
+				{
+					text: 'January 2021'
+				}
+			}
+			]
+		}) }}
+	</div>
+</div>
+{% endblock %}

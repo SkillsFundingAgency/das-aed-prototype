@@ -1,0 +1,47 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+	tag: {
+	text: "experimental"
+},
+html: 'This service is being used for research only.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		{{ govukPanel({
+			titleText: "We've notified the employers in the cohort",
+			html: "Business admin, Level: 2"
+		}) }}
+
+		<p class="govuk-body">We have sent you a confirmation email.</p>
+
+		<h2 class="govuk-heading-m">What happens next</h2>
+
+		<p class="govuk-body">
+			We've sent an email to the employers in this cohort with your training proposal and details about how to contact you.
+		</p>
+		<p class="govuk-body">
+			You should hear from employers if they're interested in discussing the training you have proposed.
+		</p>
+
+		<p class="govuk-body">
+			<a href="#" class="govuk-link">What did you think of this service?</a> (takes 30 seconds)
+		</p>
+	</div>
+</div>
+
+{% endblock %}
+
+{% set footerLinks %}
+<a href="../{{data['employer-version'] or 'aed-3-0'}}/email-provider-interest">Continue to Employer email</a>
+{% endset %}
