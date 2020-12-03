@@ -57,7 +57,7 @@ html: 'This service is being used for research only.'
 				Training location
 			</h3>
 			<p class="govuk-!-margin-bottom-2">
-				Coventry, West Midlands
+				{{data['courseLocation'] or "Coventry, West Midlands"}}
 			</p>
 			<p class="govuk-!-margin-bottom-6">
 				<a href="#">Change</a>

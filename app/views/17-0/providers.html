@@ -341,12 +341,7 @@ Training providers for - {{_standardTitle|safe}}
             <!-- <li><a href="https://help.apprenticeships.education.gov.uk/hc/en-gb#contact-us" class="govuk-link govuk-link--no-visited-state">get help with finding a training provider</a></li> -->
         </ul>
 
-        <h3 class="govuk-heading-m govuk-!-margin-bottom-2">
-            Having trouble finding a training provider?
-        </h3>
-        <p class="govuk-!-margin-bottom-6">
-            You can <a href="aed-training-needs">tell us about your training needs</a> and we'll share your interest with training providers.
-        </p>
+        {% include './_aed-cta.html' %}
 
         {% else %}
         <!-- IF any other filter applied AND 0 results -->
@@ -592,12 +587,7 @@ Training providers for - {{_standardTitle|safe}}
                 {% endfor %}
 
                 {% if myData.displaycount != 0 %}
-                <h3 class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-top-6">
-                    Having trouble finding a training provider?
-                </h3>
-                <p class="govuk-!-margin-bottom-6">
-                    You can <a href="aed-training-needs">tell us about your training needs</a> and we'll share your interest with training providers.
-                </p>
+                {% include './_aed-cta.html' %}
                 {% endif %}
             </div>
 
