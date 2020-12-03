@@ -1,6 +1,14 @@
+{% set aedUrl %}
+{% if data['aed-journey'] == 'one-thing-per-page' %}
+../aed-4-0/?courseName={{_standardTitle|safe}}&courseLocation={{myData.location}}&aedUrlString=[{{_fullURL|urlencode}}]
+{% else %}
+../aed-4-1/?courseName={{_standardTitle|safe}}&courseLocation={{myData.location}}&aedUrlString=[{{_fullURL|urlencode}}]
+{% endif %}
+{% endset %}
+
 <h3 class="govuk-heading-m govuk-!-margin-bottom-2">
 	Having trouble finding a training provider?
 </h3>
 <p class="govuk-!-margin-bottom-6">
-	You can <a href="aed-training-needs?courseName={{_standardTitle|safe}}&courseLocation={{myData.location}}">tell us about your training needs</a> and we'll share your interest with training providers.
+	You can <a href="{{aedUrl}}">tell us about your training needs</a> and we'll share your interest with training providers.
 </p>

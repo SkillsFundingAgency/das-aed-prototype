@@ -26,6 +26,36 @@ html: 'This service is being used for research only.'
 	<div class="govuk-grid-column-two-thirds">
 		<form method="post">
 			{% set date %}
+						<p>
+				Enter the date you want the training to start by
+			</p>
+			<div id="start-date-hint" class="govuk-hint">
+				For example, 03 2021
+			</div>
+			<div class="govuk-date-input" id="start-date">
+				<div class="govuk-date-input__item">
+					<div class="govuk-form-group">
+						<label class="govuk-label govuk-date-input__label" for="start-date-month">
+							Month
+						</label>
+						<input class="govuk-input govuk-date-input__input govuk-input--width-2" id="start-date-month" name="request[start-date-month]" type="text" pattern="[0-9]*" inputmode="numeric">
+					</div>
+				</div>
+				<div class="govuk-date-input__item">
+					<div class="govuk-form-group">
+						<label class="govuk-label govuk-date-input__label" for="start-date-year">
+							Year
+						</label>
+						<input class="govuk-input govuk-date-input__input govuk-input--width-4" id="start-date-year" name="request[start-date-year]" type="text" pattern="[0-9]*" inputmode="numeric">
+					</div>
+				</div>
+			</div>
+			{% endset %}
+
+			{% set dateSpecific %}
+			<p>
+				Enter the month you want the training to start
+			</p>
 			<div id="start-date-hint" class="govuk-hint">
 				For example, 03 2021
 			</div>
@@ -67,16 +97,20 @@ html: 'This service is being used for research only.'
 				},
 				items: [
 				{
-					value: "month",
-					text: "In a specific month",
+					value: "before-month",
+					text: "Before a certain date",
 					conditional:
 					{
 						html: date
 					}
 				},
 				{
-					value: "asap",
-					text: "As soon as possible"
+					value: "specific-month",
+					text: "In a specific month",
+					conditional:
+					{
+						html: dateSpecific
+					}
 				},
 				{
 					value: "dont-know",

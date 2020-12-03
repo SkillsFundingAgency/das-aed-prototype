@@ -25,28 +25,19 @@ html: 'This service is being used for research only.'
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 		<form method="post">
-			{{ govukInput({
-				label:
-				{
-					text: "How many apprentices will be doing this training?",
-					classes: "govuk-label--xl",
-					isPageHeading: true
-				},
-				classes: "govuk-input--width-4",
-				hint:
-				{
-					text: ""
-				},
-				id: "apprentices",
-				name: "request[apprentices]",
-				inputmode: "numeric",
-				pattern: "[0-9]*",
-				spellcheck: false
-			}) }}
+			<h1 class="govuk-heading-xl">
+				You need to contact at least one training provider
+			</h1>
+
+			<p>
+				You can register your interest once you’ve spoken to a training provider and they’ve told you they cannot deliver the training you’re interested in.
+			</p>
 
 			<p>
 				{{govukButton({
-					text: "Save and continue"
+					text: "Find a training provider",
+					href: "",
+					classes: "govuk-!-margin-top-4"
 				})}}
 			</p>
 		</form>

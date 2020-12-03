@@ -4,7 +4,7 @@ const router = express.Router()
 // Add your routes here - above the module.exports line
 
 router.get('/', (req, res, next) => {
-	res.redirect(`/${req.aedVersion}/start`)
+	res.redirect(`/${req.aedVersion}/aed-training-needs`)
 })
 
 function cyaRedirect(page, req, res){

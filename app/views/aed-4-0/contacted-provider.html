@@ -25,23 +25,32 @@ html: 'This service is being used for research only.'
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 		<form method="post">
-			{{ govukInput({
-				label:
+			{{ govukRadios({
+				idPrefix: "contacted-provider",
+				name: "contacted-provider",
+				fieldset: 
 				{
-					text: "How many apprentices will be doing this training?",
-					classes: "govuk-label--xl",
-					isPageHeading: true
+					legend: 
+					{
+						text: "Has a training provider told you they cannot deliver the course you’re interested in?",
+						isPageHeading: true,
+						classes: "govuk-fieldset__legend--xl"
+					}
 				},
-				classes: "govuk-input--width-4",
-				hint:
+				hint: 
 				{
 					text: ""
 				},
-				id: "apprentices",
-				name: "request[apprentices]",
-				inputmode: "numeric",
-				pattern: "[0-9]*",
-				spellcheck: false
+				items: [
+				{
+					value: "yes",
+					text: "Yes"
+				},
+				{
+					value: "no",
+					text: "No"
+				}
+				]
 			}) }}
 
 			<p>
