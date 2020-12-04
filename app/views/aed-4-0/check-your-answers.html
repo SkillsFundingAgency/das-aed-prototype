@@ -37,12 +37,12 @@ html: 'This service is being used for research only.'
 		{% endset %}
 
 		{% set startDate %}
-		{% if data['request']['start-date-preference'] == 'asap' %}
-		As soon as possible
+		{% if data['request']['start-date-preference'] == 'before-month' %}
+		{{ [data['request']['before-month-date-year'], data['request']['before-month-date-month'], '01'] | join("-") | formatDate('MMMM YYYY') }}
 		{% elif data['request']['start-date-preference'] == 'dont-know' %}
 		Not sure
-		{% else %}
-		{{ [data['request']['start-date-year'], data['request']['start-date-month'], '01'] | join("-") | formatDate('MMMM YYYY') }}
+		{% elif data['request']['start-date-preference'] == 'specific-month' %}
+		{{ [data['request']['specific-month-date-year'], data['request']['specific-month-date-month'], '01'] | join("-") | formatDate('MMMM YYYY') }}
 		{% endif %}
 		{% endset %}
 

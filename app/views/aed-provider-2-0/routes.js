@@ -4,7 +4,7 @@ const router = express.Router()
 // Add your routes here - above the module.exports line
 
 router.get('/', (req, res, next) => {
-	res.redirect(`/${req.version}/cohorts-list`)
+	res.redirect(`/${req.aedVersion}/cohorts-list`)
 })
 
 router.post('/contacted-provider', (req, res, next) => {

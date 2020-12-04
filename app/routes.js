@@ -772,11 +772,11 @@ router.use(/\/aed-([0-9]+)-([0-9]+)/, (req, res, next) => {
     require(`./views/aed-${req.params[0]}-${req.params[1]}/routes`)(req, res, next);
 })
 
-router.use(/\/provider-([0-9]+)-([0-9]+)/, (req, res, next) => {
+router.use(/\/aed-provider-([0-9]+)-([0-9]+)/, (req, res, next) => {
     req.aedVersion = req.originalUrl.split('/')[1]
     req.session.data['prototypeVersion'] = req.aedVersion
     
-    require(`./views/provider-${req.params[0]}-${req.params[1]}/routes`)(req, res, next);
+    require(`./views/aed-provider-${req.params[0]}-${req.params[1]}/routes`)(req, res, next);
 })
 
 module.exports = router
