@@ -1,8 +1,8 @@
 {% set aedUrl %}
 {% if data['aed-journey'] == 'one-thing-per-page' %}
-../aed-4-0/?courseName={{_standardTitle|safe}}&courseLocation={{myData.location}}&aedUrlString=[{{_fullURL|urlencode}}]
+../aed-4-0/
 {% else %}
-../aed-4-1/?courseName={{_standardTitle|safe}}&courseLocation={{myData.location}}&aedUrlString=[{{_fullURL|urlencode}}]
+../aed-4-1/
 {% endif %}
 {% endset %}
 
@@ -10,5 +10,5 @@
 	Having trouble finding a training provider?
 </h3>
 <p class="govuk-!-margin-bottom-6">
-	You can <a href="{{aedUrl}}">tell us about your training needs</a> and we'll share your interest with training providers.
+	You can <a href="{{aedUrl}}?courseName={{_standardTitle|safe}}&courseLocation={{myData.location}}&aedUrlString=[{{_fullURL|urlencode}}]&fat-version={{myData.version}}">tell us about your training needs</a> and we'll share your interest with training providers.
 </p>
