@@ -20,7 +20,7 @@ html: 'This service is being used for research only.'
 	<div class="govuk-grid-column-two-thirds">
 		{{ govukPanel({
 			titleText: "We've notified the employers in the cohort",
-			html: "Business admin, Level: 2"
+			html: data['request']['standard']['name']
 		}) }}
 
 		<p class="govuk-body">We have sent you a confirmation email.</p>

@@ -17,8 +17,10 @@ Example usage:
 
 */
 
+const standards = require('./standards.json')
+
 module.exports = {
 
   // Insert values here
-
+  'standards': standards,
 }

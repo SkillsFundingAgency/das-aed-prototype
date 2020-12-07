@@ -745,6 +745,26 @@ _myData.citiesAutocompleteList.sort(function(a,b){
     return 0;
 });
 
+
+router.all('*', function (req, res, next) {
+    req.session.data['citiesAutocompleteList'] = []
+    require(__dirname + '/data/cities.json').list.forEach(function(_city, index) {
+        var _suffix = (_city.city == _city.admin || _city.admin == "") ? "" : (", " + _city.admin),
+        _autoCompleteString = _city.city + _suffix
+        req.session.data['citiesAutocompleteList'].push(_autoCompleteString);
+    });
+    req.session.data['citiesAutocompleteList'].sort(function(a,b){
+        if (a.toUpperCase() < b.toUpperCase()){
+            return -1
+        } else if(a.toUpperCase() > b.toUpperCase()){
+            return 1
+        }
+        return 0;
+    });
+
+    next()
+})
+
 require('./routes/1-0/routes.js')(router,JSON.parse(JSON.stringify(_myData)));
 require('./routes/2-0/routes.js')(router,JSON.parse(JSON.stringify(_myData)));
 require('./routes/3-0/routes.js')(router,JSON.parse(JSON.stringify(_myData)));
