@@ -254,6 +254,9 @@ html: 'This service is being used for research only.'
 				Your information will also be used by the Education and Skills Funding Agency to improve apprenticeship training opportunities in England.
 			</p>
 
+			<input type="hidden" name="request[standard][name]" value="{{data['courseName']}}">
+			<!-- {{data['courseName']}} -->
+
 			<p>
 				{{govukButton({
 					text: "Submit"
