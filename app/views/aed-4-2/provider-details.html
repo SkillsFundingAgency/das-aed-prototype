@@ -1,0 +1,51 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+	tag: {
+	text: "experimental"
+},
+html: 'This service is being used for research only.'
+}) }}
+
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) 
+  }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			{{ govukInput({
+				label:
+				{
+					text: "Which training provider did you contact?",
+					classes: "govuk-label--xl",
+					isPageHeading: true
+				},
+				hint:
+				{
+					text: "Select provider"
+				},
+				id: "event-name",
+				name: "event-name"
+			}) }}
+
+			<p>
+				{{govukButton({
+					text: "Save and continue"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

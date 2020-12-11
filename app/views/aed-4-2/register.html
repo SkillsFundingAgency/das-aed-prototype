@@ -1,0 +1,114 @@
+
+{% extends "layout.html" %}
+
+{% set serviceName = 'Manage apprenticeships' %}
+
+{% block pageTitle %}
+ Manage apprenticeships
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+	tag: {
+	text: "experimental"
+},
+html: 'This service is being used for research only.'
+}) }}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+			Set up as a user
+		</h1>
+
+		<p class="govuk-body">
+			If you already have an account <a href="#">sign in</a>
+		</p>
+
+		{{ govukInput({
+			label:
+			{
+				text: "First name",
+				classes: "govuk-label--s"
+			},
+			classes: "govuk-!-width-three-quarters",
+			id: "width-20",
+			name: "width-20"
+		}) }}
+
+		{{ govukInput({
+			label:
+			{
+				text: "Last name",
+				classes: "govuk-label--s"
+			},
+			classes: "govuk-!-width-three-quarters",
+			id: "width-20",
+			name: "width-20"
+		}) }}
+
+		{{ govukInput({
+			label:
+			{
+				text: "Email",
+				classes: "govuk-label--s"
+			},
+			classes: "govuk-!-width-three-quarters",
+			hint:
+			{
+				text: "We'll send you an email to confirm your identity."
+			},
+			id: "width-20",
+			name: "width-20"
+		}) }}
+
+		{{ govukInput({
+			label:
+			{
+				text: "Create new password",
+				classes: "govuk-label--s"
+			},
+			classes: "govuk-!-width-three-quarters",
+			hint:
+			{
+				text: "Password requires upper and lowercase letters, a number and at least 8 characters."
+			},
+			id: "width-20",
+			name: "width-20"
+		}) }}
+
+		{{ govukInput({
+			label:
+			{
+				text: "Confirm password",
+				classes: "govuk-label--s"
+			},
+			classes: "govuk-!-width-three-quarters",
+			id: "width-20",
+			name: "width-20"
+		}) }}
+
+		<p class="govuk-inset-text">
+			By continuing you accept the <a href="#">terms and conditions</a>. 
+		</p>
+
+		<p>
+			{{govukButton({
+				text: "Start now",
+				href: "register",
+				isStartButton: true,
+				classes: "govuk-!-margin-top-5"
+			})}}
+		</p>
+	</div>
+</div>
+{% endblock %}

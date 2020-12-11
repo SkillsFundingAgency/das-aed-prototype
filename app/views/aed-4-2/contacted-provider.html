@@ -1,0 +1,64 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+	tag: {
+	text: "experimental"
+},
+html: 'This service is being used for research only.'
+}) }}
+
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) 
+  }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			{{ govukRadios({
+				idPrefix: "contacted-provider",
+				name: "contacted-provider",
+				fieldset: 
+				{
+					legend: 
+					{
+						text: "Has a training provider told you they cannot deliver the course you’re interested in?",
+						isPageHeading: true,
+						classes: "govuk-fieldset__legend--xl"
+					}
+				},
+				hint: 
+				{
+					text: ""
+				},
+				items: [
+				{
+					value: "yes",
+					text: "Yes"
+				},
+				{
+					value: "no",
+					text: "No"
+				}
+				]
+			}) }}
+
+			<p>
+				{{govukButton({
+					text: "Save and continue"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,90 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+	tag: {
+	text: "experimental"
+},
+html: 'This service is being used for research only.'
+}) }}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			{% call govukFieldset({
+				legend:
+				{
+					text: "Who should we contact about this?",
+					classes: "govuk-fieldset__legend--xl",
+					isPageHeading: true
+				}
+			}) %}
+
+			<p class="govuk-!-margin-bottom-6">
+				We'll use these details to contact you if there are training providers interested in delivering this apprenticeship. 
+			</p>
+
+			<!-- {{ govukInput({
+				label:
+				{
+					text: "Organisation name"
+				},
+				id: "organisation-name",
+				name: "request[organisation-name]",
+				autocomplete: "name",
+				spellcheck: false
+			}) }} -->
+
+			{{ govukInput({
+				label:
+				{
+					text: "Full name"
+				},
+				hint:
+				{
+					text: ""
+				},
+				id: "contact-full-name",
+				name: "request[contact-full-name]",
+				autocomplete: "name",
+				spellcheck: false
+			}) }}
+
+			{{ govukInput({
+				label:
+				{
+					text: "Email address"
+				},
+				hint:
+				{
+					text: ""
+				},
+				id: "email",
+				name: "request[email]"
+			}) }}
+
+			{% endcall %}
+
+			<p>
+				{{govukButton({
+					text: "Save and continue"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

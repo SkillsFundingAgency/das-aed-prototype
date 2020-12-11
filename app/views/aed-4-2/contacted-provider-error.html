@@ -1,0 +1,46 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+	tag: {
+	text: "experimental"
+},
+html: 'This service is being used for research only.'
+}) }}
+
+  {{ govukBackLink({
+      "text": "Back",
+      "href": "javascript: window.history.go(-1)"
+    }) 
+  }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			<h1 class="govuk-heading-xl">
+				You need to contact at least one training provider
+			</h1>
+
+			<p>
+				You can register your interest once you’ve spoken to a training provider and they’ve told you they cannot deliver the training you’re interested in.
+			</p>
+
+			<p>
+				{{govukButton({
+					text: "Find a training provider",
+					href: "../" + data['fat-version'] + "/home",
+					classes: "govuk-!-margin-top-4"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

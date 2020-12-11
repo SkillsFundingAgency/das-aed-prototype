@@ -1,8 +1,10 @@
 {% set aedUrl %}
-{% if data['aed-journey'] == 'one-thing-per-page' %}
+{% if data['aed-journey'] == 'aed-4-0' %}
 ../aed-4-0/
-{% else %}
+{% elif data['aed-journey'] == 'aed-4-1' %}
 ../aed-4-1/
+{% elif data['aed-journey'] == 'aed-4-2' %}
+../aed-4-2/
 {% endif %}
 {% endset %}
 
