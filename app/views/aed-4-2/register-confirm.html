@@ -1,0 +1,52 @@
+
+{% extends "layout.html" %}
+
+{% set serviceName = 'Manage apprenticeships' %}
+
+{% block pageTitle %}
+Manage apprenticeships
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<div class="success-summary govuk-!-padding-5 govuk-!-margin-bottom-9" style="border: 5px solid rgb(40, 161, 151)">
+			<h1 class="govuk-heading-l govuk-!-margin-bottom-2">We've sent you an email</h1>
+			<p class="govuk-!-margin-0">
+			To confirm your identity, we've sent a code to {email}
+		</p>
+		</div>
+
+		<h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+			Confirm your identity
+		</h1>
+
+		{{ govukInput({
+			label:
+			{
+				text: "Enter code",
+				classes: "govuk-label--s"
+			},
+			classes: "govuk-!-width-three-quarters",
+			id: "width-20",
+			name: "width-20"
+		}) }}
+
+		<p>
+			{{govukButton({
+				text: "Continue",
+				href: "contacted-provider",
+				classes: "govuk-!-margin-top-5"
+			})}}
+		</p>
+
+		<h2 class="govuk-heading-s govuk-!-margin-bottom-2">
+			Not received an email?
+		</h2>
+		<p>
+			<a href="#">You can request another email</a>
+		</p>
+	</div>
+</div>
+{% endblock %}

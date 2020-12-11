@@ -7,21 +7,6 @@
  Manage apprenticeships
 {% endblock %}
 
-{% block beforeContent %}
-{{ govukPhaseBanner({
-	tag: {
-	text: "experimental"
-},
-html: 'This service is being used for research only.'
-}) }}
-
-{{ govukBackLink({
-	"text": "Back",
-	"href": "javascript: window.history.go(-1)"
-}) 
-}}
-{% endblock %}
-
 {% block content %}
 
 <div class="govuk-grid-row">
@@ -103,9 +88,8 @@ html: 'This service is being used for research only.'
 
 		<p>
 			{{govukButton({
-				text: "Start now",
-				href: "register",
-				isStartButton: true,
+				text: "Set me up",
+				href: "register-confirm",
 				classes: "govuk-!-margin-top-5"
 			})}}
 		</p>
