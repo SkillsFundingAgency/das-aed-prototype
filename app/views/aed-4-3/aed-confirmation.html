@@ -38,7 +38,7 @@ html: 'This service is being used for research only.'
 		<h2 class="govuk-heading-m govuk-!-margin-top-6">Try changing your search</h2>
 		<p class="govuk-body">You can go back and either:</p>
 		<ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
-			<li><a href="providers?{{_sortQuery}}{{_searchQuery}}{{_standardQuery}}{{_empReviewsQuery}}{{_ofstedRatingsQuery}}{{_trainingOptionsQuery}}&location" class="govuk-link govuk-link--no-visited-state" >remove the location</a></li>
+			<li><a href="../17-0/{{data['aedUrlString']|replace('[','')|replace(']','')}}" class="govuk-link govuk-link--no-visited-state" >remove the location</a></li>
 			<li><a href="training" class="govuk-link govuk-link--no-visited-state">search for another course</a></li>
 			<!-- <li><a href="https://help.apprenticeships.education.gov.uk/hc/en-gb#contact-us" class="govuk-link govuk-link--no-visited-state">get help with finding a training provider</a></li> -->
 		</ul>
