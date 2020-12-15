@@ -1,0 +1,294 @@
+
+{% extends "layout.html" %}
+
+{% set serviceName = 'Tell us about your training needs' %}
+
+{% block pageTitle %}
+{{serviceName}}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+	tag: {
+	text: "experimental"
+},
+html: 'This service is being used for research only.'
+}) }}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% set _citiesAutocompleteList = data['citiesAutocompleteList'] %}
+{% set _defaultLocationSearchvalue = "" %}
+
+{% block content %}
+<!-- {{data['citiesAutocompleteList']}} -->
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl">
+			Tell us about your training needs
+		</h1>
+
+		<h2 class="govuk-heading-l">
+			Apprenticeship training course
+		</h2>
+
+		<form method="post">
+			{% if data['courseName'] %}
+			<h3 class="govuk-heading-m">
+				Apprenticeship training course
+			</h3>
+			<p class="govuk-!-margin-bottom-2">
+				{{data['courseName']}}
+			</p>
+			<p class="govuk-!-margin-bottom-6">
+				<a href="training">Change</a>
+			</p>
+
+			{% else %}
+			
+			{% endif %}
+
+			{% if data['courseLocation'] %}
+			<h3 class="govuk-heading-m">
+				Training location
+			</h3>
+			<p class="govuk-!-margin-bottom-2">
+				{{data['courseLocation']}}
+			</p>
+			<p class="govuk-!-margin-bottom-6">
+				<a href="{{data['aedUrlString']|replace('[','')|replace(']','')|replace('location','x')}}&location=">Change</a>
+			</p>
+			{% else %}
+			{% endif %}
+
+			<hr class="govuk-section-break--visible govuk-section-break--xl govuk-section-break">
+
+			<h2 class="govuk-heading-l">
+				Apprentices
+			</h2>
+
+			{{ govukInput({
+				label:
+				{
+					text: "How many apprentices will be doing this training?",
+					classes: "govuk-label--m",
+					isPageHeading: false
+				},
+				classes: "govuk-input--width-4",
+				hint:
+				{
+					text: ""
+				},
+				id: "apprentices",
+				name: "request[apprentices]",
+				inputmode: "numeric",
+				pattern: "[0-9]*",
+				spellcheck: false
+			}) }}
+
+			{% set dateHtml %}
+			<div id="start-date-hint" class="govuk-hint">
+				For example, 03 2021
+			</div>
+			<div class="govuk-date-input" id="start-date">
+				<div class="govuk-date-input__item">
+					<div class="govuk-form-group">
+						<label class="govuk-label govuk-date-input__label" for="start-date-month">
+							Month
+						</label>
+						<input class="govuk-input govuk-date-input__input govuk-input--width-2" id="start-date-month" name="request[start-date-month]" type="text" pattern="[0-9]*" inputmode="numeric">
+					</div>
+				</div>
+				<div class="govuk-date-input__item">
+					<div class="govuk-form-group">
+						<label class="govuk-label govuk-date-input__label" for="start-date-year">
+							Year
+						</label>
+						<input class="govuk-input govuk-date-input__input govuk-input--width-4" id="start-date-year" name="request[start-date-year]" type="text" pattern="[0-9]*" inputmode="numeric">
+					</div>
+				</div>
+			</div>
+			{% endset %}
+
+			{{ govukRadios({
+				idPrefix: "start-date",
+				name: "request[start-date-preference]",
+				fieldset: 
+				{
+					legend: 
+					{
+						text: "When do you want the apprentices to start their training?",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend--m"
+					}
+				},
+				hint: 
+				{
+					text: ""
+				},
+				items: [
+				{
+					value: "month",
+					text: "In a specific month",
+					conditional:
+					{
+						html: dateHtml
+					}
+				},
+				{
+					value: "asap",
+					text: "As soon as possible"
+				},
+				{
+					value: "dont-know",
+					text: "I'm not sure"
+				}
+				]
+			}) }}
+
+			{{ govukRadios({
+				idPrefix: "recruitment-required",
+				name: "request[recruitment-required]",
+				fieldset: 
+				{
+					legend: 
+					{
+						text: "Do you need to recruit for this apprenticeship?",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend--m"
+					}
+				},
+				hint: 
+				{
+					text: ""
+				},
+				items: [
+				{
+					value: "yes",
+					text: "Yes"
+				},
+				{
+					value: "no",
+					text: "No"
+				}
+				]
+			}) }}
+
+			<hr class="govuk-section-break--visible govuk-section-break--xl govuk-section-break">
+
+			<h2 class="govuk-heading-l">
+				About you
+			</h2>
+
+			{{ govukInput({
+				label:
+				{
+					text: "What's the name of your organisation?",
+					classes: "govuk-label--m",
+					isPageHeading: false
+				},
+				id: "organisation-name",
+				name: "request[organisation-name]"
+			}) }}
+
+			{% call govukFieldset({
+				legend:
+				{
+					text: "Who should we contact about this?",
+					classes: "govuk-fieldset__legend--m",
+					isPageHeading: false
+				}
+			}) %}
+
+			<p class="govuk-!-margin-bottom-6">
+				We'll use these details to contact you if there are training providers interested in delivering this apprenticeship.
+			</p>
+
+			{{ govukInput({
+				label:
+				{
+					text: "Full name"
+				},
+				hint:
+				{
+					text: ""
+				},
+				id: "contact-full-name",
+				name: "request[contact-full-name]",
+				autocomplete: "name",
+				spellcheck: false
+			}) }}
+
+			{{ govukInput({
+				label:
+				{
+					text: "Email address"
+				},
+				hint:
+				{
+					text: ""
+				},
+				id: "email",
+				name: "request[email]"
+			}) }}
+			{% endcall %}
+
+			<hr class="govuk-section-break--visible govuk-section-break--l govuk-section-break">
+
+			{{ govukRadios({
+				idPrefix: "register-choose",
+				name: "register-choose",
+				fieldset:
+				{
+					legend:
+					{
+						text: "Do you want to create an apprenticeship account?",
+						isPageHeading: true,
+						classes: "govuk-fieldset__legend--l govuk-!-margin-top-6"
+					}
+				},
+				hint:
+				{
+					text: "If you already have an account, select 'Yes' to go to the sign in page."
+				},
+				items: [
+				{
+					value: "yes",
+					text: "Yes"
+				},
+				{
+					value: "no",
+					text: "No"
+				}
+				]
+			}) }}
+
+			<hr class="govuk-section-break--visible govuk-section-break--xl govuk-section-break">
+
+			<h2 class="govuk-heading-l govuk-!-margin-top-8">
+				Submit your training request
+			</h2>
+			<p>
+				We'll share your interest in this training with relevant training providers to check if they can deliver the training.
+			</p>
+			<p>
+				We will not share your contact details.
+			</p>
+
+			<input type="hidden" name="request[standard][name]" value="{{data['courseName']}}">
+
+			<p>
+				{{govukButton({
+					text: "Submit"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}
+

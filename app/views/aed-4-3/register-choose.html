@@ -1,0 +1,64 @@
+
+{% extends "layout.html" %}
+
+{% set serviceName = 'Tell us about your training needs' %}
+
+{% block pageTitle %}
+{{serviceName}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl">
+			You can create an account to manage apprenticeships
+		</h1>
+
+		<p>
+			You can use your account to:
+		</p>
+
+		<ul class="govuk-list govuk-list--bullet">
+			<li>get apprenticeship funding</li>
+			<li>find and save apprenticeships</li>
+			<li>find, save and manage training providers</li>
+			<li>recruit apprentices</li>
+			<li>add and manage apprenticeships</li>
+		</ul>
+
+		<form method="post">
+			{{ govukRadios({
+				idPrefix: "register-choose",
+				name: "register-choose",
+				fieldset:
+				{
+					legend:
+					{
+						text: "Do you want to create an account?",
+						isPageHeading: true,
+						classes: "govuk-fieldset__legend--l govuk-!-margin-top-6"
+					}
+				},
+				items: [
+				{
+					value: "yes",
+					text: "Yes"
+				},
+				{
+					value: "no",
+					text: "No"
+				}
+				]
+			}) }}
+
+			<p>
+				{{govukButton({
+					text: "Continue",
+					classes: "govuk-!-margin-top-5"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

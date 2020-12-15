@@ -1,0 +1,55 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+	tag: {
+	text: "experimental"
+},
+html: 'This service is being used for research only.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		{{ govukPanel({
+			titleText: "We've registered your interest",
+			html: data['request']['standard']['name']
+		}) }}
+
+		<p class="govuk-body">We’ve sent you a confirmation email.</p>
+
+		<h2 class="govuk-heading-m">What happens next</h2>
+
+		<p class="govuk-body">
+			Training providers can view details about the training you’re interested in.
+		</p>
+
+		<p class="govuk-body">
+			If a training provider tells us they’re interested in delivering your training, we’ll send a notification email.
+		</p>
+
+		<h2 class="govuk-heading-m govuk-!-margin-top-6">Try changing your search</h2>
+		<p class="govuk-body">You can go back and either:</p>
+		<ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
+			<li><a href="providers?{{_sortQuery}}{{_searchQuery}}{{_standardQuery}}{{_empReviewsQuery}}{{_ofstedRatingsQuery}}{{_trainingOptionsQuery}}&location" class="govuk-link govuk-link--no-visited-state" >remove the location</a></li>
+			<li><a href="training" class="govuk-link govuk-link--no-visited-state">search for another course</a></li>
+			<!-- <li><a href="https://help.apprenticeships.education.gov.uk/hc/en-gb#contact-us" class="govuk-link govuk-link--no-visited-state">get help with finding a training provider</a></li> -->
+		</ul>
+	</div>
+</div>
+
+{% endblock %}
+
+{% set footerLinks %}
+<ul class="govuk-list govuk-!-font-size-16">
+	<li><a href="../aed-provider-2-0/?employer-version={{data['prototypeVersion']}}">Continue to Provider journey</a></li>
+	<li><a href="../{{data['aed-journey']}}/email-provider-interest">Continue to Employer email</a></li>
+</ul>
+{% endset %}
