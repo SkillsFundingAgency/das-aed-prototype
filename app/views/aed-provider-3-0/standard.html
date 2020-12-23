@@ -34,88 +34,91 @@ GOV.UK Prototype Kit
 </div>
 
 <div class="govuk-grid-column-full govuk-!-margin-bottom-8" style="background-color:#DEE0E2; margin-bottom: 20px; padding-top: 15px">
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-one-third">                  
-      <!-- Employer -->
-      <div class="govuk-form-group">
-        <label class="govuk-label" for="employer">
-          Employer
-        </label>
-        <select class="govuk-select" id="employer" name="employer" style="min-width:100%;">
-          <option value="all">All</option>
-          <option value="grooverider">Grooverider</option>
-          <option value="redshoeslimited">Red Shoes Limited</option>
-        </select>
-      </div>
-    </div>
-    <div class="govuk-grid-column-one-third">
-      <!-- Apprenticeship training course -->
-      <div class="govuk-form-group">
-        <label class="govuk-label" for="course">
-          Apprenticeship training course
-        </label>          
-        <select class="govuk-select" id="course" name="course" style="min-width:100%;">
-          <option value="All">All</option>
-          <option value="accountancy-level7">Accountancy: Level 7 (Standard)</option>
-          <option value="accountancy-level3">Accountancy: Level 3 (Standard)</option>
-          <option value="saddler">Bespoke Saddler: Level 3 (Standard)</option>
-        </select>          
-      </div> 
-    </div>
-    <div class="govuk-grid-column-one-third">
-      <!-- Status -->
-      <div class="govuk-form-group">
-        <label class="govuk-label" for="status">
-          Status
-        </label>
-        <select class="govuk-select" id="status" name="status" style="min-width:100%;">
-            <option value="All">All</option>
-            <option value="Completed">Completed</option>
-            <option value="Live">Live</option>
-            <option value="Paused">Paused</option>
-            <option value="Stopped">Stopped</option>
-            <option value="Waiting to start">Waiting to start</option>
-          </select>
-      </div>    
-    </div>
-  </div>
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-one-third">
-      <div class="gov-form-group">
-        <label class="govuk-label" for="start-date">
-          Planned start date
-        </label>
-        <select class="govuk-select" id="start-date" name="start-date" style="min-width:100%;">
-          <option value="All">All</option>
-          <option value="feb2019">Feb 2019</option>
-          <option value="feb2021">Feb 2021</option>
-          <option value="mar2021">Mar 2021</option>
-          <option value="apr2021">Apr 2021</option>
-          <option value="apr2022">Apr 2022</option>
-        </select>
-      </div>              
-    </div>
-    <div class="govuk-grid-column-one-third">
-      <div class="govuk-form-group">
-        <label class="govuk-label" for="status">
-          Planned end date
-        </label>
-        <select class="govuk-select" id="end-date" name="status" style="min-width:100%;">
-          <option value="All">All</option>
-          <option value="Completed">Completed</option>
-          <option value="Live">Live</option>
-          <option value="Paused">Paused</option>
-          <option value="Stopped">Stopped</option>
-          <option value="Waiting to start">Waiting to start</option>
-        </select>      
-      </div> 
-    </div>
-  </div>
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-one-third">
-      <a class="govuk-button" href="manage-your-apprentices-filtered-view" style="margin-bottom: 20px">Apply filters</a>
-    </div>
-  </div>
+	<div class="govuk-grid-row">
+		<div class="govuk-grid-column-one-half">
+			<div class="govuk-form-group govuk-!-margin-bottom-3" data-list-search-filter="">
+				<!-- <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Training location</h2> -->
+				<div class="govuk-form-group">
+					<label for="search-location" class="govuk-label">
+						Enter a town, city or postcode
+					</label>
+					<input type="search" value="" id="search-location" name="request[location]" title="Search" class="govuk-input govuk-input-background">
+				</div>
+			</div>
+
+			{{ govukSelect({
+				id: "sort",
+				name: "sort",
+				label:
+				{
+					text: "Search radius"
+				},
+				items: [
+				{
+					value: "published",
+					text: "5 miles"
+				},
+				{
+					value: "published",
+					text: "10 miles"
+				},
+				{
+					value: "published",
+					text: "25 miles"
+				},
+				{
+					value: "published",
+					text: "50 miles"
+				},
+				{
+					value: "published",
+					text: "80 miles"
+				},
+				{
+					value: "published",
+					text: "England"
+				}
+				]
+			}) }}
+		</div>
+
+		<div class="govuk-grid-column-one-third">
+			<div class="govuk-form-group">
+				<label class="govuk-label" for="start-date">
+					Start date
+				</label>
+				<select class="govuk-select" id="start-date" name="start-date" style="min-width:100%;">
+					<option value="all">All</option>
+					<option value="feb2019">Before Feb 2019</option>
+					<option value="feb2021">Before Feb 2021</option>
+					<option value="mar2021">Before Mar 2021</option>
+					<option value="apr2021">Before Apr 2021</option>
+					<option value="apr2022">Before Apr 2022</option>
+				</select>
+			</div>
+
+			<div class="govuk-form-group">
+				<label class="govuk-label" for="start-date">
+					Recruitment required
+				</label>
+				<select class="govuk-select" id="start-date" name="start-date" style="min-width:100%;">
+					<option value="all">All</option>
+					<option value="yes">Yes</option>
+					<option value="no">No</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="govuk-grid-column-one-third">
+			
+		</div>
+	</div>
+
+	<div class="govuk-grid-row">
+		<div class="govuk-grid-column-one-third">
+			<a class="govuk-button" href="manage-your-apprentices-filtered-view" style="margin-bottom: 20px">Apply filters</a>
+		</div>
+	</div>
 </div>
 
 <div class="govuk-grid-row">
@@ -216,4 +219,73 @@ GOV.UK Prototype Kit
 		})}}
 	</div>
 </div>
+{% endblock %}
+
+
+{% block pageScripts %}
+<script type="text/javascript" src="/public/javascripts/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="/public/javascripts/accessible-autocomplete.min.js"></script>
+<script>
+	accessibleAutocomplete.enhanceSelectElement({
+		selectElement: document.querySelector('#standard-picker'),
+		defaultValue: ''
+	})
+
+// Taken from DAS FAT Prototype
+// https://github.com/SkillsFundingAgency/das-fat-prototype/
+
+// Locations 
+function suggestLocations(query, populateResults) {
+	var _allSuggestions = []
+
+    // Cities
+    var _citiesResults = {{ _citiesAutocompleteList | dump | safe }},
+    _filteredCitiesResults = _citiesResults.filter(
+    	result => result.toUpperCase().startsWith(query.trim().toUpperCase())
+    	)
+    _filteredCitiesResults.sort(function(a, b) {
+    	var returnValue = 0;
+    	if (a.toUpperCase() < b.toUpperCase()) {
+    		returnValue = -1
+    	} else if (a.toUpperCase() > b.toUpperCase()) {
+    		returnValue = 1
+    	}
+    	return returnValue
+    });
+
+    // Postcodes
+    $.getJSON('https://api.postcodes.io/postcodes/' + query + '/autocomplete', function(body) {
+    	var _postcodes = body.result || []
+    	_allSuggestions = _allSuggestions.concat(_filteredCitiesResults, _postcodes)
+    	populateResults(_allSuggestions)
+    })
+}
+
+// function fireLocationSearch(){setTimeout(function(){ $("#search-location-submit").trigger("click") },200);}
+function fireLocationSearch() { setTimeout(function() { $(".location-submit").trigger("click") }, 200); }
+var locationInput = document.querySelector('#search-location')
+if (locationInput) {
+	var locationInputID = locationInput.id,
+	locationElement = document.createElement('div'),
+	defaultLocationSearchvalue = {{ _defaultLocationSearchvalue | dump | safe }}
+	locationElement.className = "autocomplete__parent_wrapper";
+	locationInput.parentNode.insertBefore(locationElement, locationInput)
+	accessibleAutocomplete({
+        // other options
+        element: locationElement,
+        id: locationInputID,
+        name: locationInput.name,
+        source: suggestLocations,
+        defaultValue: defaultLocationSearchvalue,
+        minLength: 1,
+        confirmOnBlur: false,
+        autoselect: true,
+        onConfirm: fireLocationSearch,
+        displayMenu: 'overlay'
+    })
+	locationInput.style.display = 'none'
+	locationInput.id = locationInputID + '-old'
+	locationInput.name = ''
+}
+</script>
 {% endblock %}
