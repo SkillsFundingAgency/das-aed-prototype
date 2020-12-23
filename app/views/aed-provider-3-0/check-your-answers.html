@@ -1,0 +1,124 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+	tag: {
+	text: "experimental"
+},
+html: 'This service is being used for research only.'
+}) }}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+			Check your answers
+		</h1>
+
+		{{ govukSummaryList({
+			classes: 'govuk-!-margin-bottom-6',
+			rows: [
+			{
+				key:
+				{
+					text: "Standard"
+				},
+				value:
+				{
+					text: data['request']['standard']['name']
+				}
+			},
+			{
+				key:
+				{
+					text: "Training location"
+				},
+				value:
+				{
+					html: "<p>Day release<br>Block release</p>"
+				},
+				actions:
+				{
+					items: [
+					{
+						href: "cohort-requirements",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			},
+			{
+				key:
+				{
+					text: "Start date"
+				},
+				value:
+				{
+					text: "January 2021"
+				},
+				actions:
+				{
+					items: [
+					{
+						href: "cohort-requirements",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			},
+			{
+				key:
+				{
+					text: "Cost"
+				},
+				value:
+				{
+					text: "£4,500"
+				},
+				actions:
+				{
+					items: [
+					{
+						href: "cohort-requirements",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			}
+			]
+		}) }}
+
+		<p>
+			We'll send an email with your training proposal to all employers in this cohort.
+		</p>
+
+		<p>
+			Employers may contact you if they are interested in your proposal.
+		</p>
+
+		<form method="post">
+			<p>
+				{{govukButton({
+					text: "Submit"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

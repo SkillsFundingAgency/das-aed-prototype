@@ -213,9 +213,13 @@
         </details>
 
         <!-- Employer account -->
+        <h2 class="govuk-heading-m">
+            Aggregated employer demand
+        </h2>
+
         <div class="govuk-form-group aedjourney">
         	<label class="govuk-label" >
-        		AED journey
+        		Employer journey
         	</label>
         	<select class="govuk-select" style="min-width: 100%" id="aedjourney" name="aed-journey" data-option="aed-journey">
         		<option value="aed-4-1">Single page form (4-1)</option>
@@ -223,6 +227,15 @@
                 <option value="aed-4-2">One thing per page (4-2)</option>
                 <option value="aed-4-3">Single page form (4-3)</option>
         	</select>
+        </div>
+
+         <div class="govuk-form-group aedproviderjourney">
+            <label class="govuk-label" >
+                Provider journey
+            </label>
+            <select class="govuk-select" style="min-width: 100%" id="aedproviderjourney" name="aed-provider-journey" data-option="aed-provider-journey">
+                <option value="aed-provider-2-0">Version 2-0</option>
+            </select>
         </div>
     </div>
 
@@ -522,6 +535,7 @@
                 // _urlEpaoInFAT = "&epaofat=" + _options.filter("#epaoinfat").val();
 
             _urlAedJourney = "&aed-journey=" + _options.filter("#aedjourney").val()
+            _urlAedProviderJourney = "&aed-provider-journey=" + _options.filter("#aedproviderjourney").val()
 
             // EPAO
             if(_urlService == "&s=epao"){
@@ -564,7 +578,7 @@
             }
 
             //Queries combined
-            var _urlPageQueries = _urlPage + _urlReset + _urlEmpAccount + _urlService + _urlComponents + _urlAedJourney;
+            var _urlPageQueries = _urlPage + _urlReset + _urlEmpAccount + _urlService + _urlComponents + _urlAedJourney + _urlAedProviderJourney;
 
             //URL text
             var _startURLText = _urlBase + _urlPageQueries,
