@@ -33,139 +33,97 @@ GOV.UK Prototype Kit
 	</div>
 </div>
 
-<div class="govuk-grid-row">
-	<div class="govuk-grid-column-one-third">
-		<!-- FILTERS  -->
-		<div class="fat-filter">
-			<div class="fat-filter__header">
-				<div class="fat-filter__header-title">
-					<h2 class="govuk-heading-m">Filter</h2>
-				</div>
-				<div class="fat-filter__header-action">
-				</div>
-			</div>
-			<div class="fat-filter__content">
-				<div class="fat-filter__options">
-					<!-- Search box -->
-					<form action="cohorts-list" method="GET">
-						<button type="submit" class="govuk-button fat-filter__submit" id="filters-submit">Apply filters</button>
-						<div class="govuk-form-group govuk-!-margin-bottom-3" data-list-search-filter="">
-							<label class="govuk-label govuk-label--m" for="sort">
-								Standard
-							</label>
-							<select class="govuk-select" id="standard-picker" name="request[standard][name]">
-								<option value="all">All standards</option>
-								{% for standard in data['standards']['list'] %}
-								<option value="{{standard.title}}, Level: {{standard.level}}">{{standard.title}}, Level: {{standard.level}}</option>
-								{% endfor %}
-							</select>
-						</div>
-						{{ govukCheckboxes({
-							idPrefix: "organisation",
-							name: "organisation",
-							classes: "govuk-checkboxes--small",
-							fieldset:
-							{
-								legend:
-								{
-									text: "Show",
-									isPageHeading: true,
-									classes: "govuk-fieldset__label--s govuk-visually-hidden"
-								}
-							},
-							items: [
-							{
-								value: "hmrc",
-								text: "Only standards we offer",
-								checked: true
-							}
-							]
-						}) }}
-						<div class="govuk-form-group govuk-!-margin-bottom-3" data-list-search-filter="">
-							<h2 class="govuk-heading-m govuk-!-margin-bottom-2">Training location</h2>
-							<div class="govuk-form-group">
-								<label for="search-location" class="govuk-label">
-									Enter a town, city or postcode
-								</label>
-								<input type="search" value="" id="search-location" name="request[location]" title="Search" class="govuk-input govuk-input-background">
-							</div>
-						</div>
-						{{ govukSelect({
-							id: "sort",
-							name: "sort",
-							label:
-							{
-								text: "Search radius"
-							},
-							items: [
-							{
-								value: "published",
-								text: "5 miles"
-							},
-							{
-								value: "published",
-								text: "10 miles"
-							},
-							{
-								value: "published",
-								text: "25 miles"
-							},
-							{
-								value: "published",
-								text: "50 miles"
-							},
-							{
-								value: "published",
-								text: "England"
-							}
-							]
-						}) }}
-						{{ govukCheckboxes({
-							idPrefix: "organisation",
-							name: "organisation",
-							classes: "govuk-checkboxes--small",
-							fieldset:
-							{
-								legend:
-								{
-									text: "Start date",
-									isPageHeading: true,
-									classes: "govuk-fieldset__legend--m govuk-!-margin-bottom-2"
-								}
-							},
-							items: [
-							{
-								value: "hmrc",
-								text: "As soon as possible"
-							},
-							{
-								value: "employment-tribunal",
-								text: "January 2021"
-							},
-							{
-								value: "MOD",
-								text: "February 2021"
-							},
-							{
-								value: "DfT",
-								text: "April 2021"
-							}
-							]
-						}) }}
-						<input type="hidden" value="" name="level">
-						<button type="submit" class="govuk-button fat-filter__submit" id="filters-submit-2">Apply filters</button>
-					</form>
-				</div>
-			</div>
-		</div>
-		<div class="fat-filter__togle-container filters-not-applied"><button class="govuk-button govuk-button--secondary fat-filter__toggle" type="button" style="display: none;">Hide filter</button></div>
-	</div>
+<div class="govuk-grid-column-full govuk-!-margin-bottom-8" style="background-color:#DEE0E2; margin-bottom: 20px; padding-top: 15px">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-third">                  
+      <!-- Employer -->
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="employer">
+          Employer
+        </label>
+        <select class="govuk-select" id="employer" name="employer" style="min-width:100%;">
+          <option value="all">All</option>
+          <option value="grooverider">Grooverider</option>
+          <option value="redshoeslimited">Red Shoes Limited</option>
+        </select>
+      </div>
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <!-- Apprenticeship training course -->
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="course">
+          Apprenticeship training course
+        </label>          
+        <select class="govuk-select" id="course" name="course" style="min-width:100%;">
+          <option value="All">All</option>
+          <option value="accountancy-level7">Accountancy: Level 7 (Standard)</option>
+          <option value="accountancy-level3">Accountancy: Level 3 (Standard)</option>
+          <option value="saddler">Bespoke Saddler: Level 3 (Standard)</option>
+        </select>          
+      </div> 
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <!-- Status -->
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="status">
+          Status
+        </label>
+        <select class="govuk-select" id="status" name="status" style="min-width:100%;">
+            <option value="All">All</option>
+            <option value="Completed">Completed</option>
+            <option value="Live">Live</option>
+            <option value="Paused">Paused</option>
+            <option value="Stopped">Stopped</option>
+            <option value="Waiting to start">Waiting to start</option>
+          </select>
+      </div>    
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-third">
+      <div class="gov-form-group">
+        <label class="govuk-label" for="start-date">
+          Planned start date
+        </label>
+        <select class="govuk-select" id="start-date" name="start-date" style="min-width:100%;">
+          <option value="All">All</option>
+          <option value="feb2019">Feb 2019</option>
+          <option value="feb2021">Feb 2021</option>
+          <option value="mar2021">Mar 2021</option>
+          <option value="apr2021">Apr 2021</option>
+          <option value="apr2022">Apr 2022</option>
+        </select>
+      </div>              
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="status">
+          Planned end date
+        </label>
+        <select class="govuk-select" id="end-date" name="status" style="min-width:100%;">
+          <option value="All">All</option>
+          <option value="Completed">Completed</option>
+          <option value="Live">Live</option>
+          <option value="Paused">Paused</option>
+          <option value="Stopped">Stopped</option>
+          <option value="Waiting to start">Waiting to start</option>
+        </select>      
+      </div> 
+    </div>
+  </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-third">
+      <a class="govuk-button" href="manage-your-apprentices-filtered-view" style="margin-bottom: 20px">Apply filters</a>
+    </div>
+  </div>
+</div>
 
-	<div class="govuk-grid-column-two-thirds">
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
 		<!-- {% include './includes/_cohort-details.html' %} -->
 
 		{{ govukTable({
-			caption: "14 interested employers",
+			caption: "14 employers found",
 			captionClasses: "govuk-heading-l",
 			classes: "govuk-margin-bottom-6",
 			firstCellIsHeader: false,
@@ -181,6 +139,9 @@ GOV.UK Prototype Kit
 			},
 			{
 				text: "Recruitment"
+			},
+			{
+				text: "Start date"
 			}
 			],
 			rows: [
@@ -196,6 +157,9 @@ GOV.UK Prototype Kit
 			},
 			{
 				text: "No"
+			},
+			{
+				text: "Before March 2021"
 			}
 			],
 			[
@@ -210,6 +174,9 @@ GOV.UK Prototype Kit
 			},
 			{
 				text: "No"
+			},
+			{
+				text: "April 2021"
 			}
 			],
 			[
@@ -223,7 +190,10 @@ GOV.UK Prototype Kit
 				text: "2"
 			},
 			{
-				text: "Yes"
+				text: "No"
+			},
+			{
+				text: "No preference"
 			}
 			]
 			]

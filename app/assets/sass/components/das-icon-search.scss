@@ -1,0 +1,159 @@
+.das-icon-search {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.das-icon-search__input[type="search"] {
+  font-family: "GDS Transport", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.4736842105;
+  padding: 6px;
+  margin: 0;
+  width: 100%;
+  height: 40px;
+  border: 2px solid #0b0c0c;
+  background: #ffffff;
+  border-radius: 0;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+@media print {
+  .das-icon-search__input[type="search"] {
+    font-family: sans-serif;
+  }
+}
+
+@media (min-width: 40.0625em) {
+  .das-icon-search__input[type="search"] {
+    font-size: 19px;
+    line-height: 1.4736842105;
+  }
+}
+
+@media print {
+  .das-icon-search__input[type="search"] {
+    font-size: 14pt;
+    line-height: 1.4736842105;
+  }
+}
+
+.das-icon-search__input[type="search"]:focus,
+.das-icon-search__input[type="search"].focus {
+  z-index: 2;
+}
+
+.das-icon-search__input[type="search"]:focus {
+  outline: 3px solid #ffbf47;
+  outline-offset: 0;
+  box-shadow: inset 0 0 0 2px;
+}
+
+.das-icon-search__submit {
+  border: 0;
+  cursor: pointer;
+  border-radius: 0;
+  position: relative;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  background-image: url(../images/govuk-search-button.png);
+  background-repeat: no-repeat;
+  background-position: 2px 50%;
+  text-indent: -5000px;
+  overflow: hidden;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (min-resolution: 192dpi),
+  only screen and (min-resolution: 2dppx) {
+  .das-icon-search__submit {
+    background-size: 52.5px auto;
+    background-position: 115% 50%;
+  }
+}
+
+.das-icon-search__submit:focus {
+  z-index: 2;
+  outline: 3px solid #ffbf47;
+  outline-offset: 0;
+  box-shadow: inset 0 0 0 4px #0b0c0c;
+}
+
+.das-icon-search__submit::-moz-focus-inner {
+  border: 0;
+}
+
+.das-icon-search__item-wrapper {
+  display: table;
+  width: 100%;
+  background: #ffffff;
+}
+
+.das-icon-search__item {
+  position: relative;
+  display: table-cell;
+  vertical-align: top;
+}
+
+.das-icon-search__submit-wrapper {
+  width: 1%;
+}
+
+.das-icon-search--on-govuk-blue .das-icon-search__input {
+  border-width: 0;
+}
+
+.das-icon-search--on-govuk-blue .das-icon-search__input:focus {
+  box-shadow: none;
+}
+
+.das-icon-search--on-govuk-blue .das-icon-search__submit {
+  background-color: #0b0c0c;
+  color: #ffffff;
+}
+
+.das-icon-search--on-govuk-blue .das-icon-search__submit:hover {
+  background-color: #171919;
+}
+
+.das-icon-search--on-white .das-icon-search__submit {
+  background-color: #005ea5;
+  color: #ffffff;
+}
+
+.das-icon-search--on-white .das-icon-search__submit:hover {
+  background-color: #2b8cc4;
+}
+
+.das-icon-search--on-white .das-icon-search__input[type="search"] {
+  border-right-width: 0;
+}
+
+.das-icon-search--on-white .das-icon-search__input[type="search"]:focus {
+  border-right-width: 2px;
+}
+
+.das-icon-search--large .das-icon-search__input[type="search"] {
+  height: 50px;
+}
+
+.das-icon-search--large .das-icon-search__submit {
+  width: 50px;
+  height: 50px;
+  background-position: 8px 50%;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (min-resolution: 192dpi),
+  only screen and (min-resolution: 2dppx) {
+  .das-icon-search--large .das-icon-search__submit {
+    background-size: 60px auto;
+    background-position: 160% 50%;
+  }
+}
