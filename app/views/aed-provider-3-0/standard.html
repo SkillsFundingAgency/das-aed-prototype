@@ -1,8 +1,12 @@
+
 {% extends "layout.html" %}
+
 {% block pageTitle %}
 GOV.UK Prototype Kit
 {% endblock %}
+
 {% set serviceName = 'Employer request' %}
+
 {% block beforeContent %}
 {{ govukPhaseBanner({
 	tag:
@@ -11,21 +15,20 @@ GOV.UK Prototype Kit
 	},
 	html: 'This service is being used for research only.'
 }) }}
+
 {{ govukBackLink({
 	"text": "Back",
 	"href": "javascript: window.history.go(-1)"
-})
+}) 
 }}
 {% endblock %}
 
-{% set _citiesAutocompleteList = data['citiesAutocompleteList'] %}
-{% set _defaultLocationSearchvalue = "" %}
-
 {% block content %}
+
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 		<h1 class="govuk-heading-xl">
-			Employer requests
+			{{data['selectedStandard']}}
 		</h1>
 	</div>
 </div>
@@ -157,121 +160,90 @@ GOV.UK Prototype Kit
 		</div>
 		<div class="fat-filter__togle-container filters-not-applied"><button class="govuk-button govuk-button--secondary fat-filter__toggle" type="button" style="display: none;">Hide filter</button></div>
 	</div>
+
 	<div class="govuk-grid-column-two-thirds">
-		<h2 class="govuk-heading-m">
-			2 results
-		</h2>
-		<div class="aed-search-results">
-			<ol class="aed-search-results__list">
-				<li class="aed-search-results__list-item">
-					<h2 class="govuk-heading-m aed-search-results__heading">
-						<a class="aed-search-results__link" id="provider-10065593" href="cohort-details">
-							{{data['request']['standard']['name']}}
-						</a>
-					</h2>
-					
-					<p class="govuk-!-margin-bottom-3 govuk-!-margin-top-3 govuk-!-font-size-1">
-						Starting as soon as possible
-					</p>
+		<!-- {% include './includes/_cohort-details.html' %} -->
 
-					<ul class="govuk-list govuk-!-font-size-16">
-						<li>
-							18 apprentices
-						</li>
-						<li>
-							10 employers (within 18 miles)
-						</li>
-					</ul>
-				</li>
-				<li class="aed-search-results__list-item">
-					<h2 class="govuk-heading-m aed-search-results__heading">
-						<a class="aed-search-results__link" id="provider-10065593" href="cohort-details">
-							{{data['request']['standard']['name']}} 
-						</a>
-					</h2>
-					
-					<p class="govuk-!-margin-bottom-3 govuk-!-margin-top-3 govuk-!-font-size-1">
-						Starting January 2021
-					</p>
+		{{ govukTable({
+			caption: "14 interested employers",
+			captionClasses: "govuk-heading-l",
+			classes: "govuk-margin-bottom-6",
+			firstCellIsHeader: false,
+			head: [
+			{
+				text: "Employer"
+			},
+			{
+				text: "Location"
+			},
+			{
+				text: "Apprentices"
+			},
+			{
+				text: "Recruitment"
+			}
+			],
+			rows: [
+			[
+			{
+				text: "Employer 1"
+			},
+			{
+				text: "Leamington Spa"
+			},
+			{
+				text: "3"
+			},
+			{
+				text: "No"
+			}
+			],
+			[
+			{
+				text: "Employer 2"
+			},
+			{
+				text: "Coventry"
+			},
+			{
+				text: "1"
+			},
+			{
+				text: "No"
+			}
+			],
+			[
+			{
+				text: "Employer 3"
+			},
+			{
+				text: "Coventry"
+			},
+			{
+				text: "2"
+			},
+			{
+				text: "Yes"
+			}
+			]
+			]
+		}) }}
 
-					<ul class="govuk-list govuk-!-font-size-16">
-						<li>
-							12 apprentices
-						</li>
-						<li>
-							3 employers (within 11 miles)
-						</li>
-					</ul>
-				</li>
-			</ol>
-		</div>
+		<h3 class="govuk-heading-m govuk-!-margin-top-8">
+			Interested in delivering this training?
+		</h3>
+
+		<p>
+			If you're interested in providing this training, you can create a training proposal.
+		</p>
+		<p>
+			Your training proposal will be sent to all the employers who have registered their interest.
+		</p>
+
+		{{govukButton({
+			text: "Create training proposal",
+			href: "cohort-requirements"
+		})}}
 	</div>
 </div>
-{% endblock %}
-{% block pageScripts %}
-<script type="text/javascript" src="/public/javascripts/jquery-1.11.3.js"></script>
-<script type="text/javascript" src="/public/javascripts/accessible-autocomplete.min.js"></script>
-<script>
-	accessibleAutocomplete.enhanceSelectElement({
-		selectElement: document.querySelector('#standard-picker'),
-		defaultValue: ''
-	})
-
-// Taken from DAS FAT Prototype
-// https://github.com/SkillsFundingAgency/das-fat-prototype/
-
-// Locations 
-function suggestLocations(query, populateResults) {
-	var _allSuggestions = []
-
-    // Cities
-    var _citiesResults = {{ _citiesAutocompleteList | dump | safe }},
-    _filteredCitiesResults = _citiesResults.filter(
-    	result => result.toUpperCase().startsWith(query.trim().toUpperCase())
-    	)
-    _filteredCitiesResults.sort(function(a, b) {
-    	var returnValue = 0;
-    	if (a.toUpperCase() < b.toUpperCase()) {
-    		returnValue = -1
-    	} else if (a.toUpperCase() > b.toUpperCase()) {
-    		returnValue = 1
-    	}
-    	return returnValue
-    });
-
-    // Postcodes
-    $.getJSON('https://api.postcodes.io/postcodes/' + query + '/autocomplete', function(body) {
-    	var _postcodes = body.result || []
-    	_allSuggestions = _allSuggestions.concat(_filteredCitiesResults, _postcodes)
-    	populateResults(_allSuggestions)
-    })
-}
-
-// function fireLocationSearch(){setTimeout(function(){ $("#search-location-submit").trigger("click") },200);}
-function fireLocationSearch() { setTimeout(function() { $(".location-submit").trigger("click") }, 200); }
-var locationInput = document.querySelector('#search-location')
-if (locationInput) {
-	var locationInputID = locationInput.id,
-	locationElement = document.createElement('div'),
-	defaultLocationSearchvalue = {{ _defaultLocationSearchvalue | dump | safe }}
-	locationElement.className = "autocomplete__parent_wrapper";
-	locationInput.parentNode.insertBefore(locationElement, locationInput)
-	accessibleAutocomplete({
-        // other options
-        element: locationElement,
-        id: locationInputID,
-        name: locationInput.name,
-        source: suggestLocations,
-        defaultValue: defaultLocationSearchvalue,
-        minLength: 1,
-        confirmOnBlur: false,
-        autoselect: true,
-        onConfirm: fireLocationSearch,
-        displayMenu: 'overlay'
-    })
-	locationInput.style.display = 'none'
-	locationInput.id = locationInputID + '-old'
-	locationInput.name = ''
-}
-</script>
 {% endblock %}

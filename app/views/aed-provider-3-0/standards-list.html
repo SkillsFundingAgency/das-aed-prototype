@@ -1,0 +1,188 @@
+{% extends "layout.html" %}
+{% block pageTitle %}
+GOV.UK Prototype Kit
+{% endblock %}
+{% set serviceName = 'Employer request' %}
+{% block beforeContent %}
+{{ govukPhaseBanner({
+	tag:
+	{
+		text: "experimental"
+	},
+	html: 'This service is being used for research only.'
+}) }}
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+})
+}}
+{% endblock %}
+
+{% set _citiesAutocompleteList = data['citiesAutocompleteList'] %}
+{% set _defaultLocationSearchvalue = "" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl">
+			Training opportunities
+		</h1>
+	</div>
+</div>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+		<form method="get" action="/find-an-assessment-opportunity/Search#approved">
+			<h2 class="govuk-label-wrapper">
+				<label class="govuk-label govuk-label--l" for="search-term">
+					Search
+				</label>
+			</h2>
+
+			<div class="das-icon-search das-icon-search--on-white" data-module="gem-toggle-input-class-on-focus">
+				<span id="search-term-hint" class="govuk-hint">
+					Search for Standard, reference or sector (route)
+				</span>
+				<div class="das-icon-search__item-wrapper">
+					<input type="search" id="search-term" class="das-icon-search__item das-icon-search__input js-class-toggle" name="SearchTerm" value="">
+					<div class="das-icon-search__item das-icon-search__submit-wrapper">
+						<button type="submit" class="das-icon-search__submit" id="search">Search</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+		<h2 class="govuk-heading-m">Standards</h2>
+		<p class="govuk-body">
+			<span class="govuk-!-font-weight-bold">530</span> standards found
+		</p>
+
+		<table class="govuk-table govuk-table--small">
+			<thead class="govuk-table__head">
+				<tr class="govuk-table__row">
+					<th scope="col" class="govuk-table__header">
+						<a class="sorted-ascending approved-sort govuk-link">Standard</a>
+					</th>
+					<th scope="col" class="govuk-table__header govuk-table__header--numeric govuk-!-width-one-quarter">
+						<a class="approved-sort govuk-link">Apprentices</a>
+					</th>
+					<th scope="col" class="govuk-table__header govuk-table__header--numeric govuk-!-width-one-quarter">
+						<a class="approved-sort govuk-link">Interested employers</a>
+					</th>
+				</tr>
+			</thead>
+			<tbody class="govuk-table__body">
+				{% for _standard in data['standards'].list %}
+				<tr class="govuk-table__row">
+					<td class="govuk-table__cell">
+						<a href="standard?selectedStandard={{_standard.title}} (level {{_standard.level}})" class="govuk-link">{{_standard.title}} (level {{_standard.level}})</a>
+					</td>
+					<td class="govuk-table__cell govuk-table__cell--numeric">{{ [4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20] | random }}</td>
+					<td class="govuk-table__cell govuk-table__cell--numeric">{{ [1,2,3,4] | random }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<div class="aed-search-results">
+			<ol class="aed-search-results__list">
+				<li class="aed-search-results__list-item">
+					<h2 class="govuk-heading-m aed-search-results__heading">
+						<a class="aed-search-results__link" id="provider-10065593" href="cohort-details">
+							{{data['request']['standard']['name']}}
+						</a>
+					</h2>
+				</li>
+
+				{% for _standard in data['standards'].list %}
+				<li class="aed-search-results__list-item">
+					<h2 class="govuk-heading-m aed-search-results__heading">
+						<a href="standard?selectedStandard={{_standard.title}} (level {{_standard.level}})" class="govuk-link">{{_standard.title}} (level {{_standard.level}})</a>
+					</h2>
+
+					<ul class="govuk-list govuk-!-font-size-16">
+						<li>
+							{{ [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20] | random }} apprentices
+						</li>
+						<li>
+							{{ [1,2,3,4,5,6,7,8,9] | random }} employers (within 18 miles)
+						</li>
+					</ul>
+				</li>
+				{% endfor %}
+			</ol>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{% block pageScripts %}
+<script type="text/javascript" src="/public/javascripts/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="/public/javascripts/accessible-autocomplete.min.js"></script>
+<script>
+	accessibleAutocomplete.enhanceSelectElement({
+		selectElement: document.querySelector('#standard-picker'),
+		defaultValue: ''
+	})
+
+// Taken from DAS FAT Prototype
+// https://github.com/SkillsFundingAgency/das-fat-prototype/
+
+// Locations 
+function suggestLocations(query, populateResults) {
+	var _allSuggestions = []
+
+    // Cities
+    var _citiesResults = {{ _citiesAutocompleteList | dump | safe }},
+    _filteredCitiesResults = _citiesResults.filter(
+    	result => result.toUpperCase().startsWith(query.trim().toUpperCase())
+    	)
+    _filteredCitiesResults.sort(function(a, b) {
+    	var returnValue = 0;
+    	if (a.toUpperCase() < b.toUpperCase()) {
+    		returnValue = -1
+    	} else if (a.toUpperCase() > b.toUpperCase()) {
+    		returnValue = 1
+    	}
+    	return returnValue
+    });
+
+    // Postcodes
+    $.getJSON('https://api.postcodes.io/postcodes/' + query + '/autocomplete', function(body) {
+    	var _postcodes = body.result || []
+    	_allSuggestions = _allSuggestions.concat(_filteredCitiesResults, _postcodes)
+    	populateResults(_allSuggestions)
+    })
+}
+
+// function fireLocationSearch(){setTimeout(function(){ $("#search-location-submit").trigger("click") },200);}
+function fireLocationSearch() { setTimeout(function() { $(".location-submit").trigger("click") }, 200); }
+var locationInput = document.querySelector('#search-location')
+if (locationInput) {
+	var locationInputID = locationInput.id,
+	locationElement = document.createElement('div'),
+	defaultLocationSearchvalue = {{ _defaultLocationSearchvalue | dump | safe }}
+	locationElement.className = "autocomplete__parent_wrapper";
+	locationInput.parentNode.insertBefore(locationElement, locationInput)
+	accessibleAutocomplete({
+        // other options
+        element: locationElement,
+        id: locationInputID,
+        name: locationInput.name,
+        source: suggestLocations,
+        defaultValue: defaultLocationSearchvalue,
+        minLength: 1,
+        confirmOnBlur: false,
+        autoselect: true,
+        onConfirm: fireLocationSearch,
+        displayMenu: 'overlay'
+    })
+	locationInput.style.display = 'none'
+	locationInput.id = locationInputID + '-old'
+	locationInput.name = ''
+}
+</script>
+{% endblock %}
