@@ -27,20 +27,27 @@ html: 'This service is being used for research only.'
 
 		<h2 class="govuk-heading-m">What happens next</h2>
 
-		<p class="govuk-body">
-			Training providers can view details about the training you’re interested in.
+		<p>
+			We'll share your interest in {{data['request']['standard']['name']}} with training providers for up to 12 weeks.
 		</p>
 
-		<p class="govuk-body">
-			If a training provider tells us they’re interested in delivering your training, we’ll send a notification email.
+		<p>
+			If a training provider tells us they’re interested in delivering your training, we’ll send you a notification email with their details. You can contact them to discuss your requirements. 
 		</p>
 
-		<h2 class="govuk-heading-m govuk-!-margin-top-6">Try changing your search</h2>
+		<p>
+			If you do not hear from us, it means that no training providers have expressed an interest in delivering your training.
+		</p>
+
+
+
+		<h2 class="govuk-heading-m govuk-!-margin-top-6">
+			What else can I do?
+		</h2>
 		<p class="govuk-body">You can go back and either:</p>
 		<ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
 			<li><a href="../17-0/{{data['aedUrlString']|replace('[','')|replace(']','')}}" class="govuk-link govuk-link--no-visited-state" >remove the location</a></li>
 			<li><a href="training" class="govuk-link govuk-link--no-visited-state">search for another course</a></li>
-			<!-- <li><a href="https://help.apprenticeships.education.gov.uk/hc/en-gb#contact-us" class="govuk-link govuk-link--no-visited-state">get help with finding a training provider</a></li> -->
 		</ul>
 	</div>
 </div>
