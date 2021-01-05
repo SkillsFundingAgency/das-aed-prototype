@@ -120,12 +120,34 @@ GOV.UK Prototype Kit
 	</div>
 </div>
 
+{% macro employerCheckbox(name, value='') %}
+<div class="govuk-checkboxes govuk-checkboxes--small">
+	<div class="govuk-checkboxes__item">
+		<input class="govuk-checkboxes__input" id="employer-{{ value }}" name="employer" type="checkbox" value="{{ value }}">
+		<label class="govuk-label govuk-checkboxes__label" for="employer-{{ value }}">
+			{{ name }}
+		</label>
+	</div>
+</div>
+{% endmacro %}
+
+{% set checkboxHtml %}
+<div class="govuk-checkboxes govuk-checkboxes--small">
+	<div class="govuk-checkboxes__item">
+		<input class="govuk-checkboxes__input" id="organisation" name="organisation" type="checkbox" value="hmrc">
+		<label class="govuk-label govuk-checkboxes__label" for="organisation">
+			HM Revenue and Customs (HMRC)
+		</label>
+	</div>
+</div>
+{% endset %}
+
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-full">
 		{{ govukTable({
 			caption: "3 employers interested in this training",
 			captionClasses: "govuk-heading-l",
-			classes: "govuk-margin-bottom-6",
+			classes: "govuk-margin-bottom-6 app-table--vertical-align-middle",
 			firstCellIsHeader: false,
 			head: [
 			{
@@ -138,16 +160,19 @@ GOV.UK Prototype Kit
 				text: "Apprentices"
 			},
 			{
+				text: "Start date"
+			},
+			{
 				text: "Recruitment"
 			},
 			{
-				text: "Start date"
+				text: "Interest registered"
 			}
 			],
 			rows: [
 			[
 			{
-				text: "Employer 1"
+				html: employerCheckbox('Employer 1', '1')
 			},
 			{
 				text: "Leamington Spa"
@@ -156,15 +181,18 @@ GOV.UK Prototype Kit
 				text: "3"
 			},
 			{
+				text: "Before March 2021"
+			},
+			{
 				text: "No"
 			},
 			{
-				text: "Before March 2021"
+				text: "21 December 2020"
 			}
 			],
 			[
 			{
-				text: "Employer 2"
+				html: employerCheckbox('Employer 2', '2')
 			},
 			{
 				text: "Coventry"
@@ -173,15 +201,18 @@ GOV.UK Prototype Kit
 				text: "1"
 			},
 			{
+				text: "April 2021"
+			},
+			{
 				text: "No"
 			},
 			{
-				text: "April 2021"
+				text: "21 December 2020"
 			}
 			],
 			[
 			{
-				text: "Employer 3"
+				html: employerCheckbox('Employer 3', '3')
 			},
 			{
 				text: "Coventry"
@@ -190,10 +221,13 @@ GOV.UK Prototype Kit
 				text: "2"
 			},
 			{
+				text: "No preference"
+			},
+			{
 				text: "No"
 			},
 			{
-				text: "No preference"
+				text: "21 December 2020"
 			}
 			]
 			]
@@ -204,10 +238,10 @@ GOV.UK Prototype Kit
 		</h3>
 
 		<p>
-			If you're interested in providing this training, give us some details.
+			If you’re interested in providing training, select the employers you would like to work with.
 		</p>
 		<p>
-			We'll send an email with details of your training offer to the employers you've selected.
+			Give us some details and we’ll send an email of your training offer to the employers you’ve selected.
 		</p>
 
 		{{govukButton({

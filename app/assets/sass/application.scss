@@ -27,6 +27,12 @@ $govuk-assets-path: '/govuk/assets/';
 @import "components/das-icon-search";
 
 
+.app-table--vertical-align-middle {
+    td.govuk-table__cell {
+        vertical-align: middle;
+    }
+}
+
 .govuk-heading-xl--white, .govuk-body--white {
     color: #fff;
 }
