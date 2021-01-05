@@ -1,0 +1,278 @@
+{% extends "layout.html" %}
+{% block pageTitle %}
+GOV.UK Prototype Kit
+{% endblock %}
+{% set serviceName = 'Employer request' %}
+{% block beforeContent %}
+{{ govukPhaseBanner({
+	tag:
+	{
+		text: "experimental"
+	},
+	html: 'This service is being used for research only.'
+}) }}
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+})
+}}
+{% endblock %}
+
+{% set _citiesAutocompleteList = data['citiesAutocompleteList'] %}
+{% set _defaultLocationSearchvalue = "" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl">
+			Employer requests
+		</h1>
+	</div>
+</div>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-one-third">
+		<!-- FILTERS  -->
+		<div class="fat-filter">
+			<div class="fat-filter__header">
+				<div class="fat-filter__header-title">
+					<h2 class="govuk-heading-m">Filter</h2>
+				</div>
+				<div class="fat-filter__header-action">
+				</div>
+			</div>
+			<div class="fat-filter__content">
+				<div class="fat-filter__options">
+					<!-- Search box -->
+					<form action="cohorts-list" method="GET">
+						<button type="submit" class="govuk-button fat-filter__submit" id="filters-submit">Apply filters</button>
+						<div class="govuk-form-group govuk-!-margin-bottom-3" data-list-search-filter="">
+							<label class="govuk-label govuk-label--m" for="sort">
+								Standard
+							</label>
+							<select class="govuk-select" id="standard-picker" name="request[standard][name]">
+								<option value="all">All standards</option>
+								{% for standard in data['standards']['list'] %}
+								<option value="{{standard.title}}, Level: {{standard.level}}">{{standard.title}}, Level: {{standard.level}}</option>
+								{% endfor %}
+							</select>
+						</div>
+						{{ govukCheckboxes({
+							idPrefix: "organisation",
+							name: "organisation",
+							classes: "govuk-checkboxes--small",
+							fieldset:
+							{
+								legend:
+								{
+									text: "Show",
+									isPageHeading: true,
+									classes: "govuk-fieldset__label--s govuk-visually-hidden"
+								}
+							},
+							items: [
+							{
+								value: "hmrc",
+								text: "Only standards we offer",
+								checked: true
+							}
+							]
+						}) }}
+						<div class="govuk-form-group govuk-!-margin-bottom-3" data-list-search-filter="">
+							<h2 class="govuk-heading-m govuk-!-margin-bottom-2">Training location</h2>
+							<div class="govuk-form-group">
+								<label for="search-location" class="govuk-label">
+									Enter a town, city or postcode
+								</label>
+								<input type="search" value="" id="search-location" name="request[location]" title="Search" class="govuk-input govuk-input-background">
+							</div>
+						</div>
+						{{ govukSelect({
+							id: "sort",
+							name: "sort",
+							label:
+							{
+								text: "Search radius"
+							},
+							items: [
+							{
+								value: "published",
+								text: "5 miles"
+							},
+							{
+								value: "published",
+								text: "10 miles"
+							},
+							{
+								value: "published",
+								text: "25 miles"
+							},
+							{
+								value: "published",
+								text: "50 miles"
+							},
+							{
+								value: "published",
+								text: "England"
+							}
+							]
+						}) }}
+						{{ govukCheckboxes({
+							idPrefix: "organisation",
+							name: "organisation",
+							classes: "govuk-checkboxes--small",
+							fieldset:
+							{
+								legend:
+								{
+									text: "Start date",
+									isPageHeading: true,
+									classes: "govuk-fieldset__legend--m govuk-!-margin-bottom-2"
+								}
+							},
+							items: [
+							{
+								value: "hmrc",
+								text: "As soon as possible"
+							},
+							{
+								value: "employment-tribunal",
+								text: "January 2021"
+							},
+							{
+								value: "MOD",
+								text: "February 2021"
+							},
+							{
+								value: "DfT",
+								text: "April 2021"
+							}
+							]
+						}) }}
+						<input type="hidden" value="" name="level">
+						<button type="submit" class="govuk-button fat-filter__submit" id="filters-submit-2">Apply filters</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="fat-filter__togle-container filters-not-applied"><button class="govuk-button govuk-button--secondary fat-filter__toggle" type="button" style="display: none;">Hide filter</button></div>
+	</div>
+	<div class="govuk-grid-column-two-thirds">
+		<h2 class="govuk-heading-m">
+			2 results
+		</h2>
+		<div class="aed-search-results">
+			<ol class="aed-search-results__list">
+				<li class="aed-search-results__list-item">
+					<h2 class="govuk-heading-m aed-search-results__heading">
+						<a class="aed-search-results__link" id="provider-10065593" href="cohort-details">
+							{{data['request']['standard']['name']}}
+						</a>
+					</h2>
+					
+					<p class="govuk-!-margin-bottom-3 govuk-!-margin-top-3 govuk-!-font-size-1">
+						Starting as soon as possible
+					</p>
+
+					<ul class="govuk-list govuk-!-font-size-16">
+						<li>
+							Warwick, Warwickshire
+						</li>
+						<li>
+							2 apprentice
+						</li>
+					</ul>
+				</li>
+				<li class="aed-search-results__list-item">
+					<h2 class="govuk-heading-m aed-search-results__heading">
+						<a class="aed-search-results__link" id="provider-10065593" href="cohort-details">
+							{{data['request']['standard']['name']}} 
+						</a>
+					</h2>
+					
+					<p class="govuk-!-margin-bottom-3 govuk-!-margin-top-3 govuk-!-font-size-1">
+						Starting January 2021
+					</p>
+
+					<ul class="govuk-list govuk-!-font-size-16">
+						<li>
+							Coventry, West Midlands
+						</li>
+						<li>
+							1 apprentice
+						</li>
+					</ul>
+				</li>
+			</ol>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block pageScripts %}
+<script type="text/javascript" src="/public/javascripts/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="/public/javascripts/accessible-autocomplete.min.js"></script>
+<script>
+	accessibleAutocomplete.enhanceSelectElement({
+		selectElement: document.querySelector('#standard-picker'),
+		defaultValue: ''
+	})
+
+// Taken from DAS FAT Prototype
+// https://github.com/SkillsFundingAgency/das-fat-prototype/
+
+// Locations 
+function suggestLocations(query, populateResults) {
+	var _allSuggestions = []
+
+    // Cities
+    var _citiesResults = {{ _citiesAutocompleteList | dump | safe }},
+    _filteredCitiesResults = _citiesResults.filter(
+    	result => result.toUpperCase().startsWith(query.trim().toUpperCase())
+    	)
+    _filteredCitiesResults.sort(function(a, b) {
+    	var returnValue = 0;
+    	if (a.toUpperCase() < b.toUpperCase()) {
+    		returnValue = -1
+    	} else if (a.toUpperCase() > b.toUpperCase()) {
+    		returnValue = 1
+    	}
+    	return returnValue
+    });
+
+    // Postcodes
+    $.getJSON('https://api.postcodes.io/postcodes/' + query + '/autocomplete', function(body) {
+    	var _postcodes = body.result || []
+    	_allSuggestions = _allSuggestions.concat(_filteredCitiesResults, _postcodes)
+    	populateResults(_allSuggestions)
+    })
+}
+
+// function fireLocationSearch(){setTimeout(function(){ $("#search-location-submit").trigger("click") },200);}
+function fireLocationSearch() { setTimeout(function() { $(".location-submit").trigger("click") }, 200); }
+var locationInput = document.querySelector('#search-location')
+if (locationInput) {
+	var locationInputID = locationInput.id,
+	locationElement = document.createElement('div'),
+	defaultLocationSearchvalue = {{ _defaultLocationSearchvalue | dump | safe }}
+	locationElement.className = "autocomplete__parent_wrapper";
+	locationInput.parentNode.insertBefore(locationElement, locationInput)
+	accessibleAutocomplete({
+        // other options
+        element: locationElement,
+        id: locationInputID,
+        name: locationInput.name,
+        source: suggestLocations,
+        defaultValue: defaultLocationSearchvalue,
+        minLength: 1,
+        confirmOnBlur: false,
+        autoselect: true,
+        onConfirm: fireLocationSearch,
+        displayMenu: 'overlay'
+    })
+	locationInput.style.display = 'none'
+	locationInput.id = locationInputID + '-old'
+	locationInput.name = ''
+}
+</script>
+{% endblock %}

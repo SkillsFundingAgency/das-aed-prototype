@@ -23,4 +23,11 @@ module.exports = {
 
   // Insert values here
   'standards': standards,
+  'request':
+  {
+  	'standard':
+  	{
+  		'name': "Able seafarer (deck) (level 2)"
+  	}
+  }
 }

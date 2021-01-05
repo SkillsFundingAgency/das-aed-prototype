@@ -5,7 +5,7 @@
 GOV.UK Prototype Kit
 {% endblock %}
 
-{% set serviceName = 'Employer request' %}
+{% set serviceName = 'Apprenticeship training opportunities' %}
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
@@ -126,7 +126,7 @@ GOV.UK Prototype Kit
 		<!-- {% include './includes/_cohort-details.html' %} -->
 
 		{{ govukTable({
-			caption: "14 employers found",
+			caption: "3 employers interested in this training",
 			captionClasses: "govuk-heading-l",
 			classes: "govuk-margin-bottom-6",
 			firstCellIsHeader: false,
@@ -207,14 +207,14 @@ GOV.UK Prototype Kit
 		</h3>
 
 		<p>
-			If you're interested in providing this training, you can create a training proposal.
+			If you're interested in providing this training, give us some details.
 		</p>
 		<p>
-			Your training proposal will be sent to all the employers who have registered their interest.
+			We'll send your details to the employers you have selected.
 		</p>
 
 		{{govukButton({
-			text: "Create training proposal",
+			text: "Continue and add your details",
 			href: "cohort-requirements"
 		})}}
 	</div>

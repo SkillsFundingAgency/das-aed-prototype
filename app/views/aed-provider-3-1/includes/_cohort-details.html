@@ -1,7 +1,7 @@
 <div class="govuk-inset-text govuk-!-margin-bottom-8">
-	<!-- <h2 class="govuk-heading-m">
+	<h2 class="govuk-heading-m">
 		Apprenticeship details
-	</h2> -->
+	</h2>
 	{{ govukSummaryList({
 		classes: "govuk-summary-list--no-border",
 		rows: [
@@ -13,6 +13,16 @@
 			value: 
 			{
 				text: data['request']['standard']['name']
+			}
+		},
+		{
+			key: 
+			{
+				text: "Cohort start date"
+			},
+			value:
+			{
+				text: "January 2021"
 			}
 		}
 		]
