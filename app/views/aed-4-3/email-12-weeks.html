@@ -1,0 +1,55 @@
+{% extends "./layout_email.html" %}
+
+{% set serviceName = 'EMAIL' %}
+
+{% block page_title %}
+{{serviceName}}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <a href="https://www.gov.uk/government/organisations/education-and-skills-funding-agency" target="_blank">
+    <img src="/public/images/esfa-logo.png" width="180px" id="logo">
+  </a>
+
+  <h1 class="heading-large">
+    No training providers told us they were interested in delivering your training
+  </h1>
+
+  <h2 class="heading-medium govuk-!-margin-top-7">
+    Let us know if you're still searching
+  </h2>
+
+  <p>
+    If you're still interested in finding a training provider for [[STANDARD]], you should <a href="#">let us know</a> so that we can share your interest with training providers for another 12 weeks.
+  </p>
+
+  <h3 class="heading-small govuk-!-margin-top-7">
+    Try searching for other courses
+  </h3>
+  <p>
+    You can use the <a href="#">Find apprenticeship training for your apprentice</a> service to look for other training courses.
+  </p>
+
+  <h2 class="heading-medium govuk-!-margin-top-7">
+    If you've stopped searching
+  </h2>
+  <p>
+    Otherwise, you can <a href="#">tell us to stop sending emails about this apprenticeship</a>. We'll automatically stop sharing your interest with training providers if we don't hear from you within 7 days. 
+  </p>
+
+  <p>
+    This is an automated message. Do not reply to this email.
+  </p>
+
+  <p>
+    From
+  </p>
+
+  <p>
+    Apprenticeship service team<br>
+    Education and Skills Funding Agency
+  </p>
+</main>
+{% endblock %}
