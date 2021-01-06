@@ -124,30 +124,19 @@ GOV.UK Prototype Kit
 <div class="govuk-checkboxes govuk-checkboxes--small">
 	<div class="govuk-checkboxes__item">
 		<input class="govuk-checkboxes__input" id="employer-{{ value }}" name="employer" type="checkbox" value="{{ value }}">
-		<label class="govuk-label govuk-checkboxes__label" for="employer-{{ value }}">
+		<label class="govuk-label govuk-checkboxes__label govuk-!-font-size-16" for="employer-{{ value }}">
 			{{ name }}
 		</label>
 	</div>
 </div>
 {% endmacro %}
 
-{% set checkboxHtml %}
-<div class="govuk-checkboxes govuk-checkboxes--small">
-	<div class="govuk-checkboxes__item">
-		<input class="govuk-checkboxes__input" id="organisation" name="organisation" type="checkbox" value="hmrc">
-		<label class="govuk-label govuk-checkboxes__label" for="organisation">
-			HM Revenue and Customs (HMRC)
-		</label>
-	</div>
-</div>
-{% endset %}
-
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-full">
 		{{ govukTable({
 			caption: "3 employers interested in this training",
 			captionClasses: "govuk-heading-l",
-			classes: "govuk-margin-bottom-6 app-table--vertical-align-middle",
+			classes: "govuk-margin-bottom-6 app-table--vertical-align-middle govuk-!-font-size-16",
 			firstCellIsHeader: false,
 			head: [
 			{
@@ -178,7 +167,8 @@ GOV.UK Prototype Kit
 				text: "Leamington Spa"
 			},
 			{
-				text: "3"
+				text: "3",
+				format: "numeric"
 			},
 			{
 				text: "Before March 2021"
@@ -198,7 +188,8 @@ GOV.UK Prototype Kit
 				text: "Coventry"
 			},
 			{
-				text: "1"
+				text: "1",
+				format: "numeric"
 			},
 			{
 				text: "April 2021"
@@ -218,7 +209,8 @@ GOV.UK Prototype Kit
 				text: "Coventry"
 			},
 			{
-				text: "2"
+				text: "2",
+				format: "numeric"
 			},
 			{
 				text: "No preference"
