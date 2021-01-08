@@ -38,7 +38,6 @@ html: 'This service is being used for research only.'
 		</h2> -->
 
 		<form method="post">
-			{% if data['courseName'] %}
 			<h3 class="govuk-heading-m">
 				Apprenticeship training course
 			</h3>
@@ -48,12 +47,7 @@ html: 'This service is being used for research only.'
 			<p class="govuk-!-margin-bottom-6">
 				<a href="training">Change</a>
 			</p>
-
-			{% else %}
 			
-			{% endif %}
-
-			{% if data['courseLocation'] %}
 			<h3 class="govuk-heading-m">
 				Training location
 			</h3>
@@ -63,8 +57,6 @@ html: 'This service is being used for research only.'
 			<p class="govuk-!-margin-bottom-6">
 				<a href="{{data['aedUrlString']|replace('[','')|replace(']','')|replace('location','x')}}&location=">Change</a>
 			</p>
-			{% else %}
-			{% endif %}
 
 			<hr class="govuk-section-break--visible govuk-section-break--xl govuk-section-break">
 

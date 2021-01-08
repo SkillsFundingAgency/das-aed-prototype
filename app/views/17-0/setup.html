@@ -11,10 +11,80 @@
 		<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 	</div>
 </div>
+
+<div class="govuk-!-padding-6 govuk-!-margin-bottom-8" style="border: 5px solid gold">
+    <h2 class="govuk-heading-m">
+        Aggregated employer demand
+    </h2>
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-half">
+            <h2 class="govuk-heading-s">
+                Versions
+            </h2>
+
+            <div class="govuk-form-group aedjourney govuk-!-margin-bottom-3">
+                <label class="govuk-label" >
+                    Employer journey
+                </label>
+                <select class="govuk-select" style="min-width: 100%" id="aedjourney" name="aed-journey" data-option="aed-journey">
+                    <option value="aed-4-1">Single page form (4-1)</option>
+                    <option value="aed-4-0">One thing per page (4-0)</option>
+                    <option value="aed-4-2">One thing per page (4-2)</option>
+                    <option value="aed-4-3" selected>Single page form (4-3) (latest)</option>
+                </select>
+            </div>
+            <p>
+                <a href="/aed-4-3/?courseName=Able seafarer (deck) (Level 2)">Latest employer AED journey</a>
+            </p>
+
+            <div class="govuk-form-group aedproviderjourney govuk-!-margin-top-6 govuk-!-margin-bottom-3">
+                <label class="govuk-label" >
+                    Provider journey
+                </label>
+                <select class="govuk-select" style="min-width: 100%" id="aedproviderjourney" name="aed-provider-journey" data-option="aed-provider-journey">
+                    <option value="aed-provider-2-0">Version 2-0</option>
+                    <option value="aed-provider-3-0" selected>Version 3-0 (latest)</option>
+                </select>
+            </div>
+            <p>
+                <a href="/aed-provider-3-0/?courseLocation=Coventry, West Midlands">Latest provider AED journey</a>
+            </p>
+        </div>
+
+        <div class="govuk-grid-column-one-half">
+            <h2 class="govuk-heading-s">
+                Emails
+            </h2>
+
+            <ul class="govuk-list govuk-list--bullet">
+                <li>
+                    <a href="#">Employer - confirmation</a>
+                </li>
+                <li>
+                    <a href="#">Provider - confirmation</a>
+                </li>
+                <li>
+                    <a href="#">Employer - 2 week</a>
+                </li>
+                <li>
+                    <a href="#">Employer - 6 week</a>
+                </li>
+                <li>
+                    <a href="#">Employer - 12 week</a>
+                </li>
+                <li>
+                    <a href="#">Employer - provider interested</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-one-half">
-
-		<!-- Start from -->
+        <!-- Start from -->
         <!-- <div class="govuk-form-group">
           <label class="govuk-label" >
             Start from
@@ -211,33 +281,6 @@
                 </div>
             </div>
         </details>
-
-        <!-- Employer account -->
-        <h2 class="govuk-heading-m">
-            Aggregated employer demand
-        </h2>
-
-        <div class="govuk-form-group aedjourney">
-        	<label class="govuk-label" >
-        		Employer journey
-        	</label>
-        	<select class="govuk-select" style="min-width: 100%" id="aedjourney" name="aed-journey" data-option="aed-journey">
-        		<option value="aed-4-1">Single page form (4-1)</option>
-        		<option value="aed-4-0">One thing per page (4-0)</option>
-                <option value="aed-4-2">One thing per page (4-2)</option>
-                <option value="aed-4-3">Single page form (4-3)</option>
-        	</select>
-        </div>
-
-         <div class="govuk-form-group aedproviderjourney">
-            <label class="govuk-label" >
-                Provider journey
-            </label>
-            <select class="govuk-select" style="min-width: 100%" id="aedproviderjourney" name="aed-provider-journey" data-option="aed-provider-journey">
-                <option value="aed-provider-2-0">Version 2-0</option>
-                <option value="aed-provider-3-0">Version 3-0</option>
-            </select>
-        </div>
     </div>
 
     <div class="govuk-grid-column-one-half" >
@@ -535,8 +578,8 @@
             _urlEmpAccount = "&ea=" + _options.filter("#employeraccount").val();
                 // _urlEpaoInFAT = "&epaofat=" + _options.filter("#epaoinfat").val();
 
-            _urlAedJourney = "&aed-journey=" + _options.filter("#aedjourney").val()
-            _urlAedProviderJourney = "&aed-provider-journey=" + _options.filter("#aedproviderjourney").val()
+                _urlAedJourney = "&aed-journey=" + _options.filter("#aedjourney").val()
+                _urlAedProviderJourney = "&aed-provider-journey=" + _options.filter("#aedproviderjourney").val()
 
             // EPAO
             if(_urlService == "&s=epao"){

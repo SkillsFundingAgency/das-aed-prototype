@@ -37,7 +37,7 @@ html: 'This service is being used for research only.'
 				<label for="search-location" class="govuk-label">
 					Enter the postcode where the training will take place
 				</label>
-				<input type="search" value="" id="search-location" name="request[location]" title="Search" class="govuk-input govuk-input-background">
+				<input type="search" value="" id="search-location" name="request[location]" title="Search" class="govuk-input govuk-input-background govuk-input--width-10">
 			</div>
 		</div>
 		{% endset %}
@@ -60,7 +60,7 @@ html: 'This service is being used for research only.'
 			},
 			items: [
 			{
-				value: "workplace",
+				value: "location",
 				text: "In a specific location",
 				conditional:
 				{
@@ -68,8 +68,12 @@ html: 'This service is being used for research only.'
 				}
 			},
 			{
-				value: "day-release",
+				value: "apprentices-workplace",
 				text: "At apprentice's workplace"
+			},
+			{
+				value: "remote",
+				text: "Remote"
 			}
 			]
 		}) }}
@@ -116,8 +120,8 @@ html: 'This service is being used for research only.'
 				classes: "govuk-label--m",
 				isPageHeading: true
 			},
-			id: "event-name",
-			name: "event-name",
+			id: "apprenticeship-cost",
+			name: "apprenticeship-cost",
 			prefix:
 			{
 				text: "£"
