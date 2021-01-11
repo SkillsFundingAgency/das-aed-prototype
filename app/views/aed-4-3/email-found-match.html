@@ -1,0 +1,62 @@
+{% extends "./layout_email.html" %}
+
+{% set serviceName = 'EMAIL' %}
+
+{% block page_title %}
+{{serviceName}}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <a href="https://www.gov.uk/government/organisations/education-and-skills-funding-agency" target="_blank">
+    <img src="/public/images/esfa-logo.png" width="180px" id="logo">
+  </a>
+
+
+  <h1 class="heading-large">
+    Looks like you’ve found a training provider
+  </h1>
+
+  <p>
+    We can see that you have connected with ABC Training Limited for {{data['request']['standard']['name']}} apprenticeship training.
+  </p>
+
+  <p>
+    We will remove your interest in this course so that we no longer continue to share your interest with other training providers.
+  </p>
+
+  <p>
+    If you would still like us to share your interest in {{data['request']['standard']['name']}} with other training providers, let us know within 7 days’ time.
+  </p>
+
+  <p>
+    <a href="https://findapprenticeshiptraining.apprenticeships.education.gov.uk/" class="govuk-button">Keep sharing my interest</a>
+  </p>
+
+  <h2 class="heading-large">
+    Getting the best from your training
+  </h2>
+  <p>
+    Learn more about <a href="https://www.apprenticeships.gov.uk/employers/training-your-apprentice">employing an apprentice and what to expect from apprenticeship training</a>.
+  </p>
+  <p>
+    We wish you and your apprentice well with their apprenticeship training.
+  </p>
+
+
+  <p>
+    This is an automated message. Do not reply to this email.
+  </p>
+
+  <p>
+    From
+  </p>
+
+  <p>
+    Apprenticeship service team<br>
+    Education and Skills Funding Agency
+  </p>
+  
+</main>
+{% endblock %}
