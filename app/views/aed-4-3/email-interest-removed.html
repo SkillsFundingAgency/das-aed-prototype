@@ -1,0 +1,38 @@
+{% extends "./layout_email.html" %}
+
+{% set serviceName = 'EMAIL' %}
+
+{% block page_title %}
+{{serviceName}}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <a href="https://www.gov.uk/government/organisations/education-and-skills-funding-agency" target="_blank">
+    <img src="/public/images/esfa-logo.png" width="180px" id="logo">
+  </a>
+
+
+  <h1 class="heading-large">
+    Interest removed for {{data['request']['standard']['name']}} training
+  </h1>
+
+  <p>
+    We have removed your interest in {{data['request']['standard']['name']}} apprenticeship training.
+  </p>
+
+  <p>
+    You can <a href="https://findapprenticeshiptraining.apprenticeships.education.gov.uk/" class="govuk-link">search for other apprenticeship training</a> for your business.
+  </p>
+
+  
+
+  <p>Kind regards</p>
+  <p>Apprenticeship service team</p>
+  <p>Education and Skills Funding Agency</p>
+  <p><a href="https://www.apprenticeships.gov.uk/employers" class="govuk-link govuk-link--no-visited-state">www.apprenticeships.gov.uk/employers</a></p>
+  <p>This is an automated message. Please don’t reply to this email.</p>
+  
+</main>
+{% endblock %}
