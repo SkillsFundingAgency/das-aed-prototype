@@ -3,7 +3,7 @@
 GOV.UK Prototype Kit
 {% endblock %}
 
-{% set serviceName = 'Apprenticeship training opportunities' %}
+{% set serviceName = 'Meet employer demand for apprenticeships' %}
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
@@ -34,7 +34,7 @@ GOV.UK Prototype Kit
 							{{serviceName}}
 						</h1>
 						<p class="govuk-body govuk-body--white govuk-!-margin-bottom-0">
-							DESCRIPTION
+							For training providers to see the interest registered by employers in specific apprenticeship training, so they can meet that employer demand.
 						</p>
 					</div>
 				</div>
@@ -54,7 +54,7 @@ GOV.UK Prototype Kit
 
 					<div class="das-icon-search das-icon-search--on-white" data-module="gem-toggle-input-class-on-focus">
 						<span id="search-term-hint" class="govuk-hint">
-							Search for Standard, reference or sector (route)
+							Search for apprenticeship training
 						</span>
 						<div class="das-icon-search__item-wrapper">
 							<input type="search" id="search-term" class="das-icon-search__item das-icon-search__input js-class-toggle" name="SearchTerm" value="">
@@ -69,16 +69,25 @@ GOV.UK Prototype Kit
 
 		<div class="govuk-grid-row">
 			<div class="govuk-grid-column-full">
-				<h2 class="govuk-heading-m">Standards</h2>
+				<h2 class="govuk-heading-m">Apprenticeship training with employer demand</h2>
+
+				{% set _count = 0 %}
+				{% for _standard in data['standards'].list %}
+					{% if _standard.demand == true %}
+						{% set _count = _count + 1 %}
+					{% endif %}
+				{% endfor %}
+
+
 				<p class="govuk-body">
-					<span class="govuk-!-font-weight-bold">530</span> standards found
+					<span class="govuk-!-font-weight-bold">{{_count}}</span> training courses found with employer-registered demand
 				</p>
 
 				<table class="govuk-table govuk-table--small">
 					<thead class="govuk-table__head">
 						<tr class="govuk-table__row">
 							<th scope="col" class="govuk-table__header">
-								<a class="sorted-ascending approved-sort govuk-link">Standard</a>
+								<a class="sorted-ascending approved-sort govuk-link">Apprenticeship training</a>
 							</th>
 							<th scope="col" class="govuk-table__header govuk-table__header--numeric govuk-!-width-one-quarter">
 								<a class="approved-sort govuk-link">Apprentices</a>
@@ -89,14 +98,19 @@ GOV.UK Prototype Kit
 						</tr>
 					</thead>
 					<tbody class="govuk-table__body">
+
 						{% for _standard in data['standards'].list %}
-						<tr class="govuk-table__row">
-							<td class="govuk-table__cell">
-								<a href="standard?selectedStandard={{_standard.title}} (level {{_standard.level}})" class="govuk-link">{{_standard.title}} (level {{_standard.level}})</a>
-							</td>
-							<td class="govuk-table__cell govuk-table__cell--numeric">{{ [4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20] | random }}</td>
-							<td class="govuk-table__cell govuk-table__cell--numeric">{{ [1,2,3,4] | random }}</td>
-						</tr>
+
+							{% if _standard.demand == true %}
+							<tr class="govuk-table__row">
+								<td class="govuk-table__cell">
+									<a href="standard?selectedStandard={{_standard.title}} (level {{_standard.level}})" class="govuk-link">{{_standard.title}} (level {{_standard.level}})</a>
+								</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">{{ [4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20] | random }}</td>
+								<td class="govuk-table__cell govuk-table__cell--numeric">{{ [1,2,3,4] | random }}</td>
+							</tr>
+							{% endif %}
+
 						{% endfor %}
 					</tbody>
 				</table>
