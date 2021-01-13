@@ -1,0 +1,36 @@
+
+{% extends "layout.html" %}
+
+{% set serviceName = '' %}
+
+{% block pageTitle %}
+{{serviceName}}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+	tag: {
+	text: "experimental"
+},
+html: 'This service is being used for research only.'
+}) }}
+
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl">
+			We have removed your interest in Abattoir worker (level 2)
+		</h1>
+
+		<p class="govuk-body">
+			<a href="https://findapprenticeshiptraining.apprenticeships.education.gov.uk/" class="govuk-button">Search for other apprenticeship training for your business</a> 
+		</p>
+		
+	</div>
+</div>
+{% endblock %}
+
